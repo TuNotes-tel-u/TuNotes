@@ -1,0 +1,540 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Inter", Helvetica, sans-serif;
+  background-color: #f8fafc; /* Gray-50 */
+  color: #1f2937; /* Gray-800 */
+}
+
+a {
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+/* -------------------------------------------------------------------------- */
+/* 1. Main Layout (UPLOAD-NOTES) */
+/* -------------------------------------------------------------------------- */
+.app-container {
+  display: flex;
+  /* Menghapus min-height: 100vh agar body bisa lebih tinggi dari viewport */
+}
+
+/* Sidebar Styling (Position FIXED) */
+.sidebar {
+  width: 256px;
+  background-color: #ffffff;
+  border-right: 1px solid #e2e8f0;
+  box-shadow: 1px 0 3px rgba(0, 0, 0, 0.05);
+  flex-shrink: 0;
+  display: none; /* Default hidden for mobile */
+  flex-direction: column;
+  padding: 24px;
+
+  /* MODIFIKASI: Menggunakan fixed position untuk membuat sidebar tetap */
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh; /* Agar sidebar setinggi viewport */
+  z-index: 20;
+}
+
+@media (min-width: 768px) {
+  .sidebar {
+    display: flex; /* Show on desktop/tablet */
+  }
+}
+
+/* Sidebar Header/Logo */
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 40px;
+  padding: 0 4px;
+}
+
+.top-header__logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  font-size: 20px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.top-header__logo img {
+  width: 150px;
+  height: auto;
+}
+
+/* Main Content Area */
+.main-content-area {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  /* MODIFIKASI: Menambahkan margin kiri agar konten tidak tertutup sidebar fixed */
+  margin-left: 0;
+}
+
+@media (min-width: 768px) {
+  .main-content-area {
+    /* Lebar sidebar: 256px */
+    margin-left: 256px;
+  }
+}
+
+/* -------------------------------------------------------------------------- */
+/* 2. Header (Position STICKY) */
+/* -------------------------------------------------------------------------- */
+
+.page-header {
+  width: 100%;
+  padding: 24px 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #e2e8f0;
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+  height: 90px;
+
+  /* MODIFIKASI: Mengubah position dari sticky menjadi sticky (hanya memastikan z-index yang tepat) */
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+/* ... (Kode Header lainnya tidak berubah) ... */
+
+.header-title-block {
+  display: none; /* Hide title on small screens */
+  flex-direction: column;
+  gap: 8px;
+}
+
+@media (min-width: 768px) {
+  .header-title-block {
+    display: flex; /* Show title on desktop */
+  }
+}
+
+.header-title-block .title {
+  font-size: 26px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.header-title-block .subtitle {
+  font-size: 16px;
+  font-weight: 400;
+  color: #4b5563;
+}
+
+/* Aksi pengguna di kanan */
+.user-actions {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.action-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  color: #4b5563;
+}
+
+.action-btn .ai-bell,
+.action-btn .ai-envelope {
+  font-size: 24px;
+}
+
+.badge {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background-color: #ef4444;
+  color: white;
+  font-size: 12px;
+  width: 20px;
+  height: 20px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+}
+
+.user-menu {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.user-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* -------------------------------------------------------------------------- */
+/* 3. Sidebar Navigation */
+/* -------------------------------------------------------------------------- */
+
+.sidebar-nav {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex-grow: 1; /* Push logout down */
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px;
+  height: 40px;
+  border-radius: 8px;
+  color: #475569;
+  font-size: 15px;
+  font-weight: 400;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.nav-item i {
+  font-size: 16px;
+}
+
+.nav-item:hover {
+  background-color: #f3f4f6; /* Gray-100 */
+  color: #111827;
+}
+
+.nav-item-active {
+  background-color: #3b82f61a; /* Biru transparan */
+  color: #3b82f6;
+}
+
+.nav-item-active .nav-icon {
+  color: #3b82f6;
+}
+
+/* Logout Button */
+.nav-logout {
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: 8px;
+  font-size: 14px;
+  margin-top: 50px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 12px;
+  width: 100%;
+  color: #dc2626; /* Merah */
+}
+
+.nav-logout:hover {
+  background-color: #fee2e2; /* Latar merah muda */
+}
+
+/* -------------------------------------------------------------------------- */
+/* 4. Main Body Content (Upload Form) */
+/* -------------------------------------------------------------------------- */
+
+.main-body {
+  padding: 32px 16px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  flex-grow: 1;
+}
+
+@media (min-width: 768px) {
+  .main-body {
+    padding: 40px;
+  }
+}
+
+.upload-form-wrapper {
+  width: 100%;
+  /* MODIFIKASI: Mengurangi lebar maksimum form */
+  max-width: 650px;
+
+  background-color: #ffffff;
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e5e7eb;
+}
+
+@media (min-width: 768px) {
+  .upload-form-wrapper {
+    padding: 40px;
+  }
+}
+
+/* Section Header for Upload */
+.section-header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.icon-bg-wrapper {
+  display: inline-flex;
+  padding: 12px;
+  background-color: rgba(59, 130, 246, 0.1); /* Blue-500/10 */
+  border-radius: 9999px;
+  margin-bottom: 12px;
+}
+
+.ai-cloud-upload {
+  width: 24px;
+  height: 24px;
+  color: #3b82f6;
+}
+
+.section-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 4px;
+}
+
+.section-subtitle {
+  font-size: 16px;
+  color: #6b7280;
+}
+
+/* Form Layout (using CSS Grid for two columns) */
+.notes-details-section {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+@media (min-width: 640px) {
+  .notes-details-section {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  /* Ensure the textarea, dropzone, and button span both columns */
+  .form-group:nth-child(5), /* Description */
+    .upload-dropzone,
+    .upload-submit-button,
+    .hidden-input-file {
+    grid-column: span 2;
+  }
+}
+
+/* Single Form Group */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #4b5563;
+}
+
+.form-input-field,
+.form-textarea-field {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 14px;
+  color: #111827;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-input-field::placeholder,
+.form-textarea-field::placeholder {
+  color: #9ca3af;
+}
+
+.form-input-field:focus,
+.form-textarea-field:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 1px #3b82f6;
+}
+
+.form-textarea-field {
+  resize: vertical;
+}
+
+/* Tags Input Styling */
+.tag-input-wrapper {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 4px 12px;
+  min-height: 40px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.tag-input-wrapper:focus-within {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 1px #3b82f6;
+}
+
+.remove-tag {
+  cursor: pointer;
+  font-weight: bold;
+  color: #a76611;
+  font-size: 14px;
+  line-height: 1;
+}
+
+.tag-input {
+  flex-grow: 1;
+  border: none;
+  outline: none;
+  padding: 6px 0;
+  font-size: 14px;
+  min-width: 50px;
+}
+
+/* File Dropzone Styling */
+.upload-dropzone {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 32px;
+  border: 2px dashed #d1d5db;
+  border-radius: 12px;
+  text-align: center;
+  gap: 4px;
+  min-height: 150px;
+  transition: border-color 0.3s, background-color 0.3s;
+  background-color: #f9fafb;
+  cursor: pointer;
+}
+
+.upload-dropzone:hover,
+.upload-dropzone.highlight {
+  /* Untuk efek drag and drop */
+  border-color: #3b82f6;
+  background-color: #eff6ff;
+}
+
+.ai-share-box {
+  width: 32px;
+  height: 32px;
+  color: #9ca3af;
+  margin-bottom: 8px;
+}
+
+.dropzone-text-main {
+  font-size: 16px;
+  font-weight: 600;
+  color: #4b5563;
+}
+
+.dropzone-text-hint {
+  font-size: 14px;
+  color: #6b7280;
+}
+
+.browse-link {
+  color: #3b82f6;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.dropzone-text-limit,
+.dropzone-text-support {
+  font-size: 12px;
+  color: #9ca3af;
+}
+
+/* --- CSS UNTUK FILE INPUT --- */
+.hidden-input-file {
+  /* Menyembunyikan input file secara visual */
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+.file-status {
+  font-size: 14px;
+  color: #6b7280;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  background-color: #f1f5f9;
+  font-style: italic;
+  font-weight: 500;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.file-status.file-selected {
+  color: #10b981; /* Green-500 */
+  background-color: #ecfdf5; /* Green-50 */
+  font-style: normal;
+}
+/* --- AKHIR CSS FILE INPUT --- */
+
+/* Submit Button */
+.upload-submit-button {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  height: 56px;
+  background-color: #3b82f6;
+  border-radius: 8px;
+  color: #ffffff;
+  font-size: 18px;
+  font-weight: 600;
+  transition: background-color 0.2s, opacity 0.2s;
+}
+
+.upload-submit-button:hover:not(:disabled) {
+  background-color: #2563eb;
+}
+
+.upload-submit-button:disabled {
+  cursor: not-allowed;
+  background-color: #3b82f6;
+  opacity: 0.6; /* Warna pudar saat disabled */
+}
+
+.submit-icon {
+  width: 24px;
+  height: 24px;
+}

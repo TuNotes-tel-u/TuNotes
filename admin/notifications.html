@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="../assets/images/Logo-Tunotes.png">
+    <meta name="description" content="TuNotes — platform catatan kuliah cerdas untuk mahasiswa Indonesia.">
+  <title>Notifikasi — TuNotes Admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+</head>
+<body data-page="notifications" data-title="Notifikasi">
+  <div class="app">
+    <aside class="sidebar" id="sidebar"></aside>
+    <div class="main">
+      <header class="header" id="header"></header>
+      <div class="content">
+        <div class="page-head">
+          <div>
+            <h1 class="page-title">Manajemen Notifikasi</h1>
+            <p class="page-desc">Buat, jadwalkan, perbarui, dan hapus pesan peringatan untuk pengguna</p>
+          </div>
+        </div>
+
+        <div class="grid-2" style="margin-top:20px">
+          <div class="card">
+            <div class="card-header"><div class="card-title" id="formTitle">Buat Notifikasi Baru</div></div>
+            <div class="card-body">
+              <form id="notifForm">
+                <input type="hidden" id="notifEditId" />
+                <div class="form-group">
+                  <label class="form-label" for="notifTitle">Judul Notifikasi</label>
+                  <input class="form-input" id="notifTitle" placeholder="Masukkan judul..." required />
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="notifType">Tipe</label>
+                  <select class="form-select" id="notifType">
+                    <option value="info">ℹ Informasi</option>
+                    <option value="maintenance">Pemeliharaan</option>
+                    <option value="academic"> Akademik</option>
+                    <option value="warning"> Peringatan</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="notifTarget">Target</label>
+                  <select class="form-select" id="notifTarget">
+                    <option>Semua Pengguna</option>
+                    <option>Pengguna Aktif</option>
+                    <option>Pembuat Catatan</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="notifSchedule">Jadwal Kirim (opsional)</label>
+                  <input class="form-input" type="datetime-local" id="notifSchedule" />
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="notifMessage">Pesan</label>
+                  <textarea class="form-textarea" id="notifMessage" placeholder="Tulis pesan notifikasi..." required></textarea>
+                </div>
+                <div class="flex gap-3" style="flex-wrap:wrap">
+                  <button type="submit" class="btn btn-primary"><span id="btnSendIcon"></span> Kirim Sekarang</button>
+                  <button type="button" class="btn btn-outline" id="scheduleBtn"><span id="btnSchedIcon"></span> Jadwalkan</button>
+                  <button type="button" class="btn btn-outline" id="cancelEditBtn" style="display:none">Batal Edit</button>
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header"><div class="card-title">Riwayat Notifikasi</div></div>
+            <div class="card-body" style="padding:0">
+              <div id="notifHistory"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="../assets/js/data.js"></script>
+  <script src="../assets/js/app.js"></script>
+  <script>
+    let notifList = [...DATA.notifications];
+    let nextId = Math.max(...notifList.map(n => n.id)) + 1;
+
+    const TYPE_ICONS  = { info:'', maintenance:'', academic:'', warning:'' };
+    const TYPE_BG     = { info:'var(--info-light)', maintenance:'var(--warning-light)', academic:'var(--purple-light)', warning:'var(--danger-light)' };
+    const TYPE_FG     = { info:'var(--info)',       maintenance:'var(--warning)',       academic:'var(--purple)',       warning:'var(--danger)' };
+
+    function renderHistory() {
+      const c = document.getElementById('notifHistory');
+      if (!notifList.length) {
+        c.innerHTML = `<div style="padding:32px;text-align:center;color:var(--text-muted)">Belum ada notifikasi.</div>`;
+        return;
+      }
+      c.innerHTML = notifList.map(n => `
+        <div class="notif-item" data-id="${n.id}">
+          <div class="notif-icon" style="background:${TYPE_BG[n.type]};color:${TYPE_FG[n.type]}">
+            <span style="font-size:18px">${TYPE_ICONS[n.type]}</span>
+          </div>
+          <div style="flex:1;min-width:0">
+            <div class="flex items-center gap-2" style="flex-wrap:wrap">
+              <span style="font-weight:600;font-size:13px">${escapeHtml(n.title)}</span>
+              <span class="badge ${n.status==='sent'?'badge-success':'badge-warning'}">${n.status==='sent'?'Terkirim':'Terjadwal'}</span>
+            </div>
+            <div class="text-xs text-muted" style="margin-top:2px">${escapeHtml(n.target)} • ${escapeHtml(n.time)}</div>
+            <p class="text-sm" style="margin-top:4px;color:var(--text-secondary)">${escapeHtml(n.message)}</p>
+            <div class="notif-actions">
+              <button data-act="edit">${ICONS.edit} Edit</button>
+              <button data-act="delete" class="delete-btn">${ICONS.trash} Hapus</button>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function readForm() {
+      return {
+        title:    document.getElementById('notifTitle').value.trim(),
+        type:     document.getElementById('notifType').value,
+        target:   document.getElementById('notifTarget').value,
+        schedule: document.getElementById('notifSchedule').value,
+        message:  document.getElementById('notifMessage').value.trim(),
+        editId:   document.getElementById('notifEditId').value,
+      };
+    }
+    function resetForm() {
+      document.getElementById('notifForm').reset();
+      document.getElementById('notifEditId').value = '';
+      document.getElementById('formTitle').textContent = 'Buat Notifikasi Baru';
+      document.getElementById('cancelEditBtn').style.display = 'none';
+    }
+
+    function handleSubmit(e) {
+      e.preventDefault();
+      const f = readForm();
+      if (!f.title || !f.message) return;
+      if (f.editId) {
+        const n = notifList.find(x => x.id === Number(f.editId));
+        if (n) {
+          Object.assign(n, { title: f.title, type: f.type, target: f.target, message: f.message });
+          showToast('Notifikasi diperbarui');
+        }
+      } else {
+        notifList.unshift({ id: nextId++, title: f.title, type: f.type, target: f.target,
+          time: 'Baru saja', status: 'sent', message: f.message });
+        showToast('Notifikasi berhasil dikirim!');
+      }
+      resetForm();
+      renderHistory();
+    }
+
+    function handleSchedule() {
+      const f = readForm();
+      if (!f.title || !f.schedule) {
+        showToast('Isi judul dan jadwal terlebih dahulu!');
+        return;
+      }
+      notifList.unshift({
+        id: nextId++, title: f.title, type: f.type, target: f.target,
+        time: new Date(f.schedule).toLocaleString('id-ID'),
+        status: 'scheduled', message: f.message || '-'
+      });
+      resetForm();
+      renderHistory();
+      showToast('Notifikasi berhasil dijadwalkan!');
+    }
+
+    function handleHistoryClick(e) {
+      const btn = e.target.closest('button[data-act]');
+      if (!btn) return;
+      const item = btn.closest('[data-id]');
+      const id = Number(item.dataset.id);
+      const n = notifList.find(x => x.id === id);
+      if (!n) return;
+      if (btn.dataset.act === 'edit') {
+        document.getElementById('notifEditId').value = n.id;
+        document.getElementById('notifTitle').value  = n.title;
+        document.getElementById('notifType').value   = n.type;
+        document.getElementById('notifTarget').value = n.target;
+        document.getElementById('notifMessage').value= n.message;
+        document.getElementById('formTitle').textContent = 'Edit Notifikasi';
+        document.getElementById('cancelEditBtn').style.display = '';
+        document.getElementById('notifTitle').focus();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else if (btn.dataset.act === 'delete') {
+        if (confirm(`Hapus notifikasi "${n.title}"?`)) {
+          notifList = notifList.filter(x => x.id !== id);
+          renderHistory();
+          showToast('Notifikasi dihapus');
+        }
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('btnSendIcon').innerHTML = ICONS.send;
+      document.getElementById('btnSchedIcon').innerHTML = ICONS.clock;
+      renderHistory();
+      document.getElementById('notifForm').addEventListener('submit', handleSubmit);
+      document.getElementById('scheduleBtn').addEventListener('click', handleSchedule);
+      document.getElementById('cancelEditBtn').addEventListener('click', resetForm);
+      document.getElementById('notifHistory').addEventListener('click', handleHistoryClick);
+    });
+  </script>
+</body>
+</html>

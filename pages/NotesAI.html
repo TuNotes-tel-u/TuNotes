@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="../assets/images/Logo-Tunotes.png">
+    <meta name="description" content="TuNotes — platform catatan kuliah cerdas untuk mahasiswa Indonesia.">
+    <title>Notes AI - TuNotes</title>
+    <link rel="stylesheet" href="../assets/css/NotesAI.css" />
+    <script src="https://unpkg.com/akar-icons-fonts"></script>
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-regular-rounded/css/uicons-regular-rounded.css'>
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-regular-straight/css/uicons-regular-straight.css'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<div class="app-container">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+        <div class="sidebar__header">
+            <a href="Dashboard.html" class="top-header__logo">
+                <img src="../assets/images/Logo-Tunotes.png" alt="TuNotes Icon">
+            </a>
+        </div>
+
+        <nav class="main-nav">
+            <ul class="nav-list">
+                <li class="nav-item">
+                    <a href="Dashboard.html" class="nav-link">
+                        <i class="ai-home-alt1"></i>
+                        <span>Home</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="MyNotes.html" class="nav-link">
+                        <i class="ai-file"></i>
+                        <span>My Notes</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="MyFavorites.html" class="nav-link">
+                        <i class="ai-heart"></i>
+                        <span>Favorit</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="UploadNotes.html" class="nav-link">
+                        <i class="ai-cloud-upload"></i>
+                        <span>Upload Notes</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="NotesAI.html" class="nav-link active">
+                        <i class="fi fi-rr-robot"></i>
+                        <span>Notes AI</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="NotesRead.html" class="nav-link">
+                        <i class="ai-folder"></i>
+                        <span>Notes Read</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="StudyList.html" class="nav-link">
+                        <i class="ai-schedule"></i>
+                        <span>Study List</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="Profil.html" class="nav-link">
+                        <i class="ai-person"></i>
+                        <span>Profil</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="sidebar__footer">
+            <a class="btn_logout" href="#"><i class="ai-sign-out"></i>Logout</a>
+        </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+        <!-- Header inside main content -->
+        <header class="content-header">
+            <div class="header__left">
+                <h1 class="page-title">Notes AI</h1>
+                <p class="page-subtitle">Summarize, write resumes, and analyze.</p>
+            </div>
+            <!-- Actions -->
+            <div class="header__right">
+                <button class="btn--icon">
+                    <i class="ai-bell"></i>
+                    <span class="badge" data-notif-badge>3</span>
+                </button>
+                <button class="btn--icon">
+                    <i class="ai-envelope"></i>
+                    <span class="badge" data-message-badge>2</span>
+                </button>
+                <button class="user-profile">
+                    <img src="../assets/images/user1.png" alt="" class="avatar" data-user-avatar>
+                    <span data-user-name></span>
+                    <i class="ai-chevron-down"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="ai-hero">
+            <h2>Asisten Belajar Cerdas</h2>
+            <p>Tanya, buat, atau analisis catatan kuliah dengan bantuan AI TuNotes.</p>
+
+            <form id="aiForm" class="ai-input-container">
+                <div class="ai-input-wrapper">
+                    <textarea id="aiPrompt" class="ai-input" rows="2" maxlength="4000" required
+                              placeholder="Tanya, cari, atau buat apa saja… (3–4000 karakter)"
+                              style="flex:1;resize:vertical;min-height:48px;padding:0.6rem 0.9rem;border:1px solid #d1d5db;border-radius:8px;font:inherit;"></textarea>
+                    <button type="submit" id="aiSendBtn" class="ai-send-btn" title="Kirim ke AI">
+                        <i class="fa-solid fa-paper-plane"></i>
+                    </button>
+                </div>
+                <div class="ai-options">
+                    <div class="ai-mode-group">
+                        <span class="label">Mode AI:</span>
+                        <label class="radio-label"><input type="radio" name="mode" value="auto" checked> Otomatis</label>
+                        <label class="radio-label"><input type="radio" name="mode" value="research"> Penelitian</label>
+                        <label class="radio-label"><input type="radio" name="mode" value="all_sources"> Semua sumber</label>
+                    </div>
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="allowEdit"> Izinkan pengeditan hasil AI
+                    </label>
+                </div>
+            </form>
+        </section>
+
+        <!-- Quick Start Section -->
+        <section class="quick-start">
+            <h3>Mulai Cepat</h3>
+            <div class="quick-cards">
+                <div class="card-action" data-template="agenda" style="cursor:pointer;">
+                    <div class="icon-box blue"><i class="fa-solid fa-calendar-days"></i></div>
+                    <h4>Tulis Agenda Kuliah</h4>
+                    <p>Buat jadwal dan rencana belajar otomatis</p>
+                </div>
+                <div class="card-action" data-template="analyze" style="cursor:pointer;">
+                    <div class="icon-box green"><i class="fa-solid fa-file-pdf"></i></div>
+                    <h4>Analisis PDF atau Gambar</h4>
+                    <p>Upload dan dapatkan ringkasan otomatis</p>
+                </div>
+                <div class="card-action" data-template="tracker" style="cursor:pointer;">
+                    <div class="icon-box orange"><i class="fa-solid fa-list-check"></i></div>
+                    <h4>Buat Pelacak Tugas</h4>
+                    <p>Kelola deadline dan prioritas tugas</p>
+                </div>
+                <div class="card-action" data-template="whatsnew" style="cursor:pointer;">
+                    <div class="icon-box purple"><i class="fa-solid fa-circle-question"></i></div>
+                    <h4>Yang Baru di Notes AI</h4>
+                    <p>Lihat fitur dan update terbaru</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Result Section (dynamic) -->
+        <section class="ai-results">
+            <div class="section-header">
+                <h3>Hasil AI</h3>
+            </div>
+
+            <div id="resultsList"></div>
+
+            <div id="emptyState" class="empty-state-hint" style="text-align:center;padding:2rem;color:#9ca3af;">
+                <i class="fa-solid fa-robot" style="font-size:2.5rem;display:block;margin-bottom:0.5rem;color:#c4b5fd;"></i>
+                <p>Mulai bertanya untuk melihat hasil AI di sini</p>
+            </div>
+
+        </section>
+
+        <!-- Promo/Footer Section -->
+        <section class="promo-section">
+            <h2>Tingkatkan Produktivitas Belajar</h2>
+            <p>Gunakan Notes AI untuk meringkas catatan, membuat agenda, dan menganalisis materi kuliah secara otomatis.
+            </p>
+            <div class="promo-actions">
+                <button class="btn-primary"><a href="NotesAI.html">Mulai Sekarang</a></button>
+                <button class="btn-outline">Pelajari Lebih Lanjut</button>
+            </div>
+        </section>
+
+    </main>
+</div>
+
+<script src="../assets/js/api.js"></script>
+<script src="../assets/js/modal.js"></script>
+<script src="../assets/js/user-header.js"></script>
+<script src="../assets/js/notes-ai.js"></script>
+</html>

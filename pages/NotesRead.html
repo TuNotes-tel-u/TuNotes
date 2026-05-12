@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="../assets/images/Logo-Tunotes.png">
+    <meta name="description" content="TuNotes — platform catatan kuliah cerdas untuk mahasiswa Indonesia.">
+    <title>TuNotes - Reading Board</title>
+    <link rel="stylesheet" href="../assets/css/NotesRead.css">
+    <!-- Akar Icons -->
+    <script src="https://unpkg.com/akar-icons-fonts"></script>
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-regular-rounded/css/uicons-regular-rounded.css'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+            <div class="sidebar__header">
+                <a href="Dashboard.html" class="top-header__logo">
+                    <img src="../assets/images/Logo-Tunotes.png" alt="TuNotes Icon">
+                </a>
+            </div>
+
+            <nav class="main-nav">
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a href="Dashboard.html" class="nav-link">
+                            <i class="ai-home-alt1"></i>
+                            <span>Home</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="MyNotes.html" class="nav-link">
+                            <i class="ai-file"></i>
+                            <span>My Notes</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="MyFavorites.html" class="nav-link">
+                            <i class="ai-heart"></i>
+                            <span>Favorit</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="UploadNotes.html" class="nav-link">
+                            <i class="ai-cloud-upload"></i>
+                            <span>Upload Notes</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="NotesAI.html" class="nav-link">
+                            <i class="fi fi-rr-robot"></i>
+                            <span>Notes AI</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="NotesRead.html" class="nav-link active">
+                            <i class="ai-folder"></i>
+                            <span>Notes Read</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="StudyList.html" class="nav-link">
+                            <i class="ai-schedule"></i>
+                            <span>Study List</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="Profil.html" class="nav-link">
+                            <i class="ai-person"></i>
+                            <span>Profil</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="sidebar__footer">
+                <button class="btn--logout"><i class="ai-sign-out"></i>Logout</button>
+            </div>
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <main class="main-content">
+            <!-- HEADER -->
+            <header class="content-header">
+                <div class="header__left">
+                    <h1 class="page-title">Board Kuliah</h1>
+                    <p class="page-subtitle">Catatan kuliah lebih visual dan mudah diatur.</p>
+                </div>
+
+                <div class="header__right">
+                    <button class="btn--icon">
+                        <i class="ai-bell"></i>
+                        <span class="badge" data-notif-badge>3</span>
+                    </button>
+                    <button class="btn--icon">
+                        <i class="ai-envelope"></i>
+                        <span class="badge" data-message-badge>2</span>
+                    </button>
+                    <button class="user-profile">
+                        <img src="../assets/images/user1.png" alt="" class="avatar" data-user-avatar>
+                        <span data-user-name></span>
+                        <i class="ai-chevron-down"></i>
+                    </button>
+                </div>
+            </header>
+
+            <!-- CONTROLS & STATS (Preserved from original but wrapped cleanly) -->
+            <div class="controls-section">
+                <div class="search-filter">
+                    <div class="search-box">
+                        <i class="ai-search"></i>
+                        <input type="text" placeholder="Cari catatan...">
+                    </div>
+                    <div class="dropdown">
+                        <span>Semua Mata Kuliah</span>
+                        <i class="ai-chevron-down"></i>
+                    </div>
+                </div>
+
+                <div class="stats-group">
+                    <div class="stat-item">
+                        <span class="stat-value blue" id="statTotal">0</span>
+                        <span class="stat-label">Total Catatan</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value green" id="statDone">0</span>
+                        <span class="stat-label">Selesai</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value orange" id="statTarget">0</span>
+                        <span class="stat-label">
+                            Target Mingguan
+                            <a href="#" id="editTargetLink" title="Atur target mingguan"
+                               style="font-size:0.75rem;color:#3b82f6;margin-left:0.5rem;cursor:pointer;text-decoration:none;">
+                                Atur
+                            </a>
+                        </span>
+                    </div>
+                </div>
+
+                <button class="btn-add" style="padding:0.6rem 1.2rem;background:#3b82f6;color:#fff;border:none;border-radius:6px;cursor:pointer;font-weight:500;">
+                   + Add reading notes
+                </button>
+            </div>
+
+            <!-- BOARD GRID -->
+            <div class="board-grid">
+                <div class="board-column" data-column="unread">
+                    <div class="column-header">
+                        <h3>Belum Dibaca</h3>
+                        <span class="count-badge">0</span>
+                    </div>
+                    <div class="column-content"></div>
+                </div>
+
+                <div class="board-column" data-column="learning">
+                    <div class="column-header">
+                        <h3>Sedang Dipelajari</h3>
+                        <span class="count-badge warning">0</span>
+                    </div>
+                    <div class="column-content"></div>
+                </div>
+
+                <div class="board-column" data-column="done">
+                    <div class="column-header">
+                        <h3>Selesai</h3>
+                        <span class="count-badge success">0</span>
+                    </div>
+                    <div class="column-content"></div>
+                </div>
+            </div>
+
+            <!-- AI RECOMMENDATION BANNER -->
+            <div class="ai-banner">
+                <div class="ai-icon">
+                    <i class="ai-robot"></i>
+                </div>
+                <div class="ai-text">
+                    <h3>Rekomendasi AI</h3>
+                    <p>Catatan "Integral Trigonometri" cocok untuk target minggu ini</p>
+                </div>
+                <button class="btn-ai-analyze">Analisis dengan AI</button>
+            </div>
+        </main>
+    </div>
+    <script src="../assets/js/api.js"></script>
+    <script src="../assets/js/modal.js"></script>
+    <script src="../assets/js/user-header.js"></script>
+    <script src="../assets/js/notes-read.js"></script>
+</body>
+
+</html>

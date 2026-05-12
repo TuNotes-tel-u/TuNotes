@@ -1,0 +1,741 @@
+/* -------------------------------------
+   0. GLOBAL RESET & TIPOGRAFI
+---------------------------------------- */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Inter", Helvetica, sans-serif;
+  color: #111827;
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+/* Utility Class for Layout */
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+/* Typography Base */
+h1,
+h2,
+h3 {
+  font-weight: 700;
+  color: #111827;
+  line-height: 1.1;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 64px;
+}
+
+.section-title {
+  font-size: 36px;
+  margin-bottom: 16px;
+}
+
+.section-subtitle {
+  font-size: 20px;
+  color: #4b5563;
+}
+
+/* -------------------------------------
+   2. HEADER & NAVIGASI
+---------------------------------------- */
+
+.header {
+  background-color: #ffffff;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 75px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo img {
+  width: 130px;
+  height: auto;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  align-items: center; /* Menambahkan align-items */
+  gap: 25px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #4b5563;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: #2563eb;
+}
+
+/* -------------------------------------
+   3. BUTTON COMPONENTS
+---------------------------------------- */
+
+.btn {
+  padding: 18px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 16px;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 64px;
+}
+
+/* Primary Button */
+.btn-primary {
+  background-color: #2563eb;
+  color: #ffffff;
+  border: 2px solid #2563eb;
+}
+
+.btn-primary:hover {
+  background-color: #1d4ed8;
+}
+
+/* --- PENAMBAHAN KODE --- 
+  Style untuk tombol Register di Navbar (dari inline style) 
+*/
+.nav-links .btn-primary {
+  color: #ffffff;
+  padding: 10px 15px;
+  border-radius: 7px;
+  height: auto; /* Override .btn height */
+}
+
+/* Outline Button */
+.btn-outline {
+  background-color: transparent;
+  color: #2563eb;
+  border: 2px solid #2563eb;
+  height: 64px;
+}
+
+.btn-outline:hover {
+  background-color: #2563eb;
+  color: #ffffff;
+}
+
+/* Smaller Buttons (Used in Features/Testimonials sections) */
+.btn-sm {
+  padding: 14px 20px;
+  font-size: 16px;
+  height: 52px;
+}
+
+/* -------------------------------------
+   4. HERO SECTION
+---------------------------------------- */
+
+section {
+  padding: 80px 0;
+}
+
+.hero {
+  display: flex;
+  gap: 150px;
+  align-items: center; /* Mengubah 'flex-start' menjadi 'center' */
+  padding-top: 110px;
+  padding-bottom: 160px;
+  position: relative;
+}
+
+.hero_content {
+  display: flex;
+  flex-direction: column;
+  max-width: 584px;
+}
+
+.hero_title {
+  font-size: 60px;
+  line-height: 1.1;
+  margin-bottom: 12px;
+}
+
+.hero_title .span {
+  color: #2563eb;
+}
+
+.hero_subtitle {
+  font-size: 18px;
+  line-height: 33px;
+  color: #4b5563;
+  margin-bottom: 32px;
+}
+
+.hero_buttons {
+  display: flex;
+  gap: 16px;
+}
+
+.hero_image {
+  max-width: 550px;
+  padding: 20px;
+  background-color: #f3f4f6;
+  border-radius: 16px;
+  box-shadow: 0 20px 30px rgba(0, 0, 0, 0.25);
+}
+
+.hero_image img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+}
+
+/* -------------------------------------
+   5. FEATURES SECTION
+---------------------------------------- */
+
+.features {
+  background-color: #f9fcffff;
+  padding-top: 47px;
+  padding-bottom: 60px;
+}
+
+.features_grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  margin-bottom: 48px;
+}
+
+.feature-card {
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  padding: 32px;
+  border-radius: 12px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.feature-card_icon {
+  width: 64px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  margin-bottom: 24px;
+}
+
+.feature-card_icon img {
+  width: 28px;
+  height: auto;
+}
+
+.feature-card:nth-child(1) .feature-card_icon {
+  background-color: #dbeafe;
+}
+.feature-card:nth-child(2) .feature-card_icon {
+  background-color: #dcfce7;
+}
+.feature-card:nth-child(3) .feature-card_icon {
+  background-color: #fdcedf;
+}
+.feature-card:nth-child(4) .feature-card_icon {
+  background-color: #f3e8ff;
+}
+.feature-card:nth-child(5) .feature-card_icon {
+  background-color: #fee2e2;
+}
+.feature-card:nth-child(6) .feature-card_icon {
+  background-color: #fef9c3;
+}
+
+.feature-card_title {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  white-space: nowrap;
+}
+
+.feature-card_text {
+  font-size: 16px;
+  color: #4b5563;
+}
+
+.features_buttons {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+}
+
+/* -------------------------------------
+   6. ABOUT SECTION
+---------------------------------------- */
+
+.about {
+  display: flex;
+  gap: 64px;
+  align-items: flex-start;
+  padding-top: 80px;
+  padding-bottom: 50px;
+}
+
+.about_content {
+  max-width: 576px;
+  display: flex;
+  flex-direction: column;
+}
+
+.about_description {
+  font-size: 18px;
+  line-height: 30px;
+  color: #4b5563;
+  margin-top: 20px;
+  margin-bottom: 32px;
+}
+
+.about_missions {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.mission-item_title {
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 28px;
+  margin-bottom: 8px;
+}
+
+.mission-item_text {
+  font-size: 16px;
+  line-height: 24px;
+  color: #4b5563;
+}
+
+.about_image {
+  max-width: 576px;
+  display: flex;
+  flex-direction: column;
+  padding: 26px;
+  background-color: #f9fafb;
+  border-radius: 16px;
+  margin-top: 3.9px;
+}
+
+.about_image img {
+  width: 100%;
+  height: 256px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 24px;
+}
+
+.about_image-caption {
+  font-size: 16px;
+  text-align: center;
+  color: #4b5563;
+}
+
+/* -------------------------------------
+   7. TESTIMONIALS SECTION
+---------------------------------------- */
+
+.testimonials {
+  background-color: #eff6ff;
+  padding-top: 65px;
+  padding-bottom: 70px;
+}
+
+.testimonials_grid {
+  display: flex;
+  gap: 32px;
+  margin-top: 64px;
+  margin-bottom: 48px;
+  justify-content: center;
+}
+
+.testimonial-card {
+  max-width: 592px;
+  padding: 32px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.testimonial-card_header {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.testimonial-card_avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 9999px;
+  object-fit: cover;
+}
+
+.testimonial-card_author h4 {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px;
+  margin: 0;
+}
+
+.testimonial-card_author p {
+  font-size: 14px;
+  line-height: 20px;
+  color: #4b5563;
+  margin: 0;
+}
+
+.testimonial-card_body {
+  font-size: 16px;
+  color: #374151;
+  line-height: 1.5;
+}
+
+.testimonials_buttons {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+}
+
+/* -------------------------------------
+   8. FOOTER
+---------------------------------------- */
+
+.site-footer {
+  background-color: #f9fafb;
+  padding: 64px 0;
+}
+
+.footer-container {
+  display: flex;
+  gap: 89px;
+}
+
+.footer__about {
+  max-width: 384px;
+  position: relative;
+}
+
+.footer__logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.footer__logo img {
+  width: 165px;
+  height: auto;
+}
+
+.social-media {
+  display: flex;
+  gap: 16px;
+  padding-top: 30px;
+}
+
+.social-media a {
+  text-decoration: none;
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.social-media a i {
+  font-size: 20px;
+  background-color: transparent;
+  color: #4b5563;
+  transition: color 0.3s;
+}
+
+/* --- PENAMBAHAN KODE: Efek hover untuk ikon sosial media --- */
+.social-media a:hover i {
+  color: #2563eb;
+}
+
+.footer__tagline {
+  font-size: 16px;
+  color: #4b5563;
+  padding-top: 10px;
+}
+
+.footer__copyright {
+  font-size: 14px;
+  color: #6b7280;
+  margin-top: 10px;
+}
+
+.footer__description {
+  font-size: 14px;
+  line-height: 23px;
+  color: #4b5563;
+  padding-top: 12px;
+}
+
+.footer_nav,
+.footer_social,
+.footer_unduh {
+  min-width: 200px;
+}
+
+.footer_nav h3,
+.footer_social h3,
+.footer_unduh h3 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 16px;
+}
+
+.footer_nav ul,
+.footer_social ul,
+.footer_unduh ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.footer_nav a,
+.footer_social a,
+.footer_unduh a {
+  text-decoration: none;
+  font-size: 16px;
+  color: #4b5563;
+  line-height: 24px;
+  transition: color 0.3s;
+}
+
+.footer_nav a:hover,
+.footer_social a:hover,
+.footer_unduh a:hover {
+  color: #2563eb;
+}
+
+/* =====================================================
+   PENAMBAHAN KODE: 9. HAMBURGER MENU (BASE STYLES)
+=====================================================
+*/
+
+/* Sembunyikan checkbox (fungsionalitas) */
+.menu-toggle-checkbox {
+  display: none;
+}
+
+/* Sembunyikan tombol hamburger di desktop */
+.menu-toggle {
+  display: none;
+  cursor: pointer;
+  /* Atur agar tidak ikut terdorong oleh 'gap' di .nav-links */
+  margin-left: 20px;
+}
+
+/* Style untuk 3 garis hamburger (dari <span>) */
+.menu-toggle span {
+  display: block;
+  width: 25px;
+  height: 3px;
+  background-color: #111827; /* Warna garis: hitam */
+  margin: 5px 0;
+  transition: all 0.3s ease;
+}
+
+/* =====================================================
+   PENAMBAHAN KODE: 10. MEDIA QUERIES (RESPONSIVE)
+=====================================================
+*/
+
+/* --- A. Tablet (768px) --- */
+@media (max-width: 768px) {
+  /* Perkecil padding di tablet */
+  .container {
+    padding: 0 24px;
+  }
+
+  /* --- Menu Navigasi Tablet --- */
+
+  /* Tampilkan tombol hamburger */
+  .menu-toggle {
+    display: block;
+  }
+
+  /* Ubah .nav-links menjadi menu mobile yang tersembunyi */
+  .nav-links {
+    position: absolute;
+    top: 75px; /* Tepat di bawah header */
+    left: 0;
+    width: 100%;
+    background-color: #ffffff;
+
+    /* Atur sebagai menu vertikal */
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 24px;
+
+    /* Sembunyikan menu (transisi slide-in dari kiri) */
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Atur jarak antar item menu mobile */
+  .nav-links li {
+    width: 100%;
+    padding: 10px 0;
+  }
+
+  /* Tampilkan menu saat checkbox di-klik */
+  .menu-toggle-checkbox:checked ~ .nav-links {
+    transform: translateX(0);
+  }
+
+  /* Animasi hamburger (X) saat di-klik */
+  .menu-toggle-checkbox:checked ~ .menu-toggle span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+  }
+  .menu-toggle-checkbox:checked ~ .menu-toggle span:nth-child(2) {
+    opacity: 0;
+  }
+  .menu-toggle-checkbox:checked ~ .menu-toggle span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+  }
+
+  /* --- Layout Section Tablet --- */
+
+  /* Tumpuk .hero (teks di atas, gambar di bawah) */
+  .hero {
+    flex-direction: column;
+    gap: 50px;
+    padding-top: 60px;
+    padding-bottom: 60px;
+  }
+
+  .hero_content,
+  .hero_image {
+    max-width: 100%;
+    text-align: center;
+  }
+
+  .hero_buttons {
+    justify-content: center;
+  }
+
+  /* Ubah grid fitur menjadi 2 kolom */
+  .features_grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* Tumpuk .about */
+  .about {
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .about_content,
+  .about_image {
+    max-width: 100%;
+  }
+
+  /* Tumpuk .testimonials */
+  .testimonials_grid {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* Buat kolom footer membungkus (wrap) */
+  .footer-container {
+    flex-wrap: wrap;
+    gap: 40px;
+  }
+
+  .footer__about {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .footer_nav,
+  .footer_social,
+  .footer_unduh {
+    /* Buat 2 kolom berdampingan */
+    min-width: calc(50% - 20px);
+  }
+}
+
+/* --- B. Mobile (560px) --- */
+@media (max-width: 560px) {
+  /* Perkecil padding section */
+  section {
+    padding: 60px 0;
+  }
+
+  /* Perkecil font judul */
+  .hero_title {
+    font-size: 42px;
+  }
+
+  .section-title {
+    font-size: 30px;
+  }
+
+  /* Tumpuk tombol di hero */
+  .hero_buttons {
+    flex-direction: column;
+  }
+
+  /* Buat tombol lebar penuh di mobile */
+  .features_buttons,
+  .testimonials_buttons {
+    flex-direction: column;
+  }
+
+  .btn {
+    width: 100%;
+  }
+
+  /* Ubah grid fitur menjadi 1 kolom */
+  .features_grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Tumpuk semua kolom footer */
+  .footer_nav,
+  .footer_social,
+  .footer_unduh {
+    min-width: 100%;
+  }
+}

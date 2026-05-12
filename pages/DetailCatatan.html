@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/png" href="../assets/images/Logo-Tunotes.png">
+    <meta name="description" content="TuNotes — platform catatan kuliah cerdas untuk mahasiswa Indonesia.">
+  <meta charset="utf-8" />
+  <title>Detail Catatan: Advanced ML Concepts</title>
+   <link rel="stylesheet" href="../assets/css/DetailCatatan.css" />
+    <!-- Lucide Icons (Menggunakan CDN untuk ikon) -->
+    <script src="https://unpkg.com/akar-icons-fonts"></script>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container header-container">
+      <div class="header-left">
+        <a href="Dashboard.html" class="btn-icon" aria-label="Kembali">
+            <i class="ai-arrow-left"></i>
+        </a>
+        <h1 class="page-title">Advanced Machine Learning Concepts</h1>
+      </div>
+      <div class="header-right">
+        <a href="path/to/file.pdf" class="btn btn-primary" download>
+          <img src="img/icon-download.svg" alt="" />
+          <span>Download</span>
+        </a>
+        <button class="btn-icon" id="shareBtn" aria-label="Bagikan"
+                style="font-size:1.25rem;line-height:1;color:#6b7280;">
+            <span aria-hidden="true">↗</span>
+        </button>
+        <button class="btn-icon" id="likeBtn" aria-label="Sukai"
+                style="font-size:1.5rem;line-height:1;color:#9ca3af;">
+            <span aria-hidden="true">♥</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="container page-content">
+    <main class="main-content">
+      <section class="document-viewer">
+        <img src="../assets/images/catatan.png" alt="Preview Catatan ML Chapter 5" class="document-image" />
+      </section>
+
+      <section class="file-info-bar">
+        <div class="file-details">
+          <img src="../assets/images/dokumen.svg" alt="Ikon PDF" class="file-icon" />
+          <div class="file-meta">
+            <span class="file-name">ML_Chapter_5_Notes.pdf</span>
+            <span class="file-size">2.4 MB • 24 pages</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="author-info">
+        <img src="../assets/images/user1.png" alt="Foto profil Sarah Chen" class="avatar" />
+        <div class="author-details">
+          <span class="author-name">Sarah Chen</span>
+          <span class="author-role">Author</span>
+        </div>
+        <p class="author-bio">
+         Bab ini membahas konsep-konsep pembelajaran mesin tingkat lanjut, termasuk jaringan saraf tiruan, arsitektur pembelajaran mendalam, 
+         dan teknik-teknik optimasi. Topik-topik utama meliputi:
+        </p>
+      </section>
+    </main>
+
+    <aside class="sidebar">
+      <div class="card course-info">
+        <div class="card-header">
+          <img src="../assets/images/Letecture.svg" alt="Ikon Buku" class="card-icon" />
+          <div class="course-meta">
+            <h2 class="card-title">CS 229: Machine Learning</h2>
+            <p>Prof. Andrew Ng • Telkom University</p>
+          </div>
+        </div>
+        <div class="card-footer">
+          <span class="tag tag-advanced">Advanced</span>
+          <span class="date">March 2, 2024</span>
+        </div>
+      </div>
+
+      <div class="card uploader-info">
+        <img src="../assets/images/user1.png" alt="Foto profil Sarah Chen" class="avatar-small" />
+        <div class="uploader-details">
+          <span class="uploader-name">Sarah Chen</span>
+          <span class="upload-time">Uploaded 3 days ago</span>
+        </div>
+      </div>
+
+      <div class="card ai-summary">
+        <div class="card-header">
+          <img src="../assets/images/AI.svg" alt="Ikon AI" class="card-icon" />
+          <h2 class="card-title">AI Summary</h2>
+        </div>
+        <p>Bab ini membahas konsep pembelajaran mesin tingkat lanjut...</p>
+        <ul>
+          <li>Algoritma propagasi balik dan varian penurunan gradien</li>
+          <li>Jaringan saraf konvolusional dan rekursif</li>
+          <li>Teknik regularisasi dan pencegahan overfitting</li>
+        </ul>
+      </div>
+
+      <div class="card comments-section">
+        <div class="comments-header">
+          <h2 class="card-title">Comments (1)</h2>
+          <button class="btn btn-secondary">Add Comment</button>
+        </div>
+        
+        <div class="comment-list" id="commentList"></div>
+      </div>
+    </aside>
+  </div>
+  <script src="../assets/js/api.js"></script>
+  <script src="../assets/js/detail-catatan.js"></script>
+ </body>
+</html>

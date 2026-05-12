@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="../assets/images/Logo-Tunotes.png">
+    <meta name="description" content="TuNotes — platform catatan kuliah cerdas untuk mahasiswa Indonesia.">
+  <title>Moderasi Konten — TuNotes Admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+</head>
+<body data-page="content" data-title="Konten">
+  <div class="app">
+    <aside class="sidebar" id="sidebar"></aside>
+    <div class="main">
+      <header class="header" id="header"></header>
+      <div class="content">
+        <div class="page-head">
+          <div>
+            <h1 class="page-title">Moderasi Konten Publik</h1>
+            <p class="page-desc">Pantau catatan yang dibagikan, jumlah unduhan, dan rating bintang</p>
+          </div>
+        </div>
+
+        <div class="stats-grid" id="contentStats"></div>
+
+        <div class="filter-bar">
+          <div class="filter-search">
+            <span id="searchIcon"></span>
+            <input id="contentSearch" type="search" placeholder="Cari catatan atau penulis..." aria-label="Cari catatan" />
+          </div>
+          <div class="filter-tabs" role="tablist">
+            <button class="filter-tab active" data-filter="all">Semua</button>
+            <button class="filter-tab" data-filter="published">Dipublikasi</button>
+            <button class="filter-tab" data-filter="flagged">Dilaporkan</button>
+            <button class="filter-tab" data-filter="review">Dalam Review</button>
+          </div>
+        </div>
+
+        <div id="contentList"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="../assets/js/data.js"></script>
+  <script src="../assets/js/app.js"></script>
+  <script>
+    const STATUS_MAP = {
+      published: { label: 'Dipublikasi',  cls: 'badge-success' },
+      flagged:   { label: 'Dilaporkan',   cls: 'badge-danger' },
+      review:    { label: 'Dalam Review', cls: 'badge-warning' },
+    };
+
+    let notes = [...DATA.notes];
+    const state = { filter: 'all', search: '' };
+
+    function renderStats() {
+      const s = DATA.stats;
+      document.getElementById('contentStats').innerHTML = `
+        <div class="stat-card"><div class="stat-icon blue">${ICONS.fileText}</div>
+          <div><div class="stat-value">${s.totalNotes.toLocaleString('id-ID')}</div><div class="stat-label">Total Catatan</div></div></div>
+        <div class="stat-card"><div class="stat-icon yellow">${ICONS.star}</div>
+          <div><div class="stat-value">${s.avgRating}</div><div class="stat-label">Rata-rata Rating</div></div></div>
+        <div class="stat-card"><div class="stat-icon purple">${ICONS.download}</div>
+          <div><div class="stat-value">${s.totalDownloads.toLocaleString('id-ID')}</div><div class="stat-label">Total Unduhan</div></div></div>
+        <div class="stat-card"><div class="stat-icon red">${ICONS.flag}</div>
+          <div><div class="stat-value">${s.reportedNotes}</div><div class="stat-label">Dilaporkan</div></div></div>
+      `;
+    }
+
+    function renderList() {
+      const term = state.search.toLowerCase();
+      const filtered = notes.filter(n => {
+        const mf = state.filter === 'all' || n.status === state.filter;
+        const ms = n.title.toLowerCase().includes(term) || n.author.toLowerCase().includes(term);
+        return mf && ms;
+      });
+      const list = document.getElementById('contentList');
+      if (!filtered.length) {
+        list.innerHTML = `<div class="card" style="padding:32px;text-align:center;color:var(--text-muted)">Tidak ada catatan yang cocok.</div>`;
+        return;
+      }
+      list.innerHTML = filtered.map(n => `
+        <div class="card" data-id="${n.id}" style="margin-bottom:12px;padding:16px;display:flex;align-items:center;gap:14px;flex-wrap:wrap">
+          <div class="stat-icon blue" style="width:44px;height:44px">${ICONS.fileText}</div>
+          <div style="flex:1;min-width:200px">
+            <div style="font-weight:600;font-size:14px">${escapeHtml(n.title)}</div>
+            <div class="text-muted text-xs">${escapeHtml(n.author)} • ${escapeHtml(n.category)} • ${n.date}</div>
+          </div>
+          <div class="flex items-center gap-4 text-xs text-muted">
+            <span style="color:#f59e0b">★ ${n.rating}</span>
+            <span>↓ ${n.downloads}</span>
+            ${n.reports > 0 ? `<span style="color:var(--danger)">⚑ ${n.reports}</span>` : ''}
+          </div>
+          <span class="badge ${STATUS_MAP[n.status].cls}">${STATUS_MAP[n.status].label}</span>
+          <div class="flex gap-2">
+            <button class="btn-icon" data-act="view" aria-label="Lihat catatan">${ICONS.eye}</button>
+            <button class="btn-icon danger" data-act="delete" aria-label="Hapus catatan">${ICONS.trash}</button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function handleAction(act, id) {
+      const n = notes.find(x => x.id === id);
+      if (!n) return;
+      if (act === 'view') {
+        openModal({
+          title: n.title,
+          body: `
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;font-size:13px">
+              <div><div class="text-xs text-muted">Penulis</div><div style="font-weight:600">${escapeHtml(n.author)}</div></div>
+              <div><div class="text-xs text-muted">Kategori</div><div>${escapeHtml(n.category)}</div></div>
+              <div><div class="text-xs text-muted">Status</div><span class="badge ${STATUS_MAP[n.status].cls}">${STATUS_MAP[n.status].label}</span></div>
+              <div><div class="text-xs text-muted">Tanggal</div><div>${n.date}</div></div>
+              <div><div class="text-xs text-muted">Rating</div><div style="color:#f59e0b">★ ${n.rating}</div></div>
+              <div><div class="text-xs text-muted">Unduhan</div><div>${n.downloads}</div></div>
+              <div><div class="text-xs text-muted">Laporan</div><div style="color:${n.reports?'var(--danger)':'inherit'}">${n.reports}</div></div>
+            </div>
+          `,
+          footer: `<button class="btn btn-outline" onclick="closeModal()">Tutup</button>`
+        });
+      } else if (act === 'delete') {
+        if (confirm(`Hapus catatan "${n.title}"?`)) {
+          notes = notes.filter(x => x.id !== id);
+          renderList();
+          showToast('Catatan dihapus');
+        }
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('searchIcon').innerHTML = ICONS.search;
+      renderStats(); renderList();
+      document.getElementById('contentSearch').addEventListener('input', e => {
+        state.search = e.target.value; renderList();
+      });
+      document.querySelectorAll('.filter-tab').forEach(tab => {
+        tab.addEventListener('click', () => {
+          document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+          tab.classList.add('active');
+          state.filter = tab.dataset.filter;
+          renderList();
+        });
+      });
+      document.getElementById('contentList').addEventListener('click', e => {
+        const btn = e.target.closest('button[data-act]');
+        if (!btn) return;
+        const card = btn.closest('[data-id]');
+        handleAction(btn.dataset.act, Number(card.dataset.id));
+      });
+    });
+  </script>
+</body>
+</html>

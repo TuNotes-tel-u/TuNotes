@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/png" href="../assets/images/Logo-Tunotes.png">
+    <meta name="description" content="TuNotes — platform catatan kuliah cerdas untuk mahasiswa Indonesia.">
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../assets/css/DetailList.css" /> 
+    <script src="https://unpkg.com/akar-icons-fonts"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-regular-rounded/css/uicons-regular-rounded.css'>
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-bold-rounded/css/uicons-bold-rounded.css'>
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-solid-straight/css/uicons-solid-straight.css'>
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-regular-rounded/css/uicons-regular-rounded.css'>
+    <title>Calculus I | Course Detail</title>
+    </head>
+  <body>
+    <div class="page-container">
+      
+      <header class="detail-header">
+        <div class="header-content">
+          <a href="StudyList.html" class="btn-back">
+           <i class="ai-arrow-left"></i>
+            <span>Back to Study List</span>
+          </a>
+          <div class="header-actions">
+            <button class="btn btn--primary btn-edit-info" id="btnEditCourse">
+              <span>✎ Edit Course Info</span>
+            </button>
+            <button id="btnDeleteCourse" style="background:#ef4444;color:#fff;padding:0.5rem 1rem;border:none;border-radius:6px;cursor:pointer;margin-left:0.5rem;">Hapus Course</button>
+          </div>
+        </div>
+      </header>
+
+      <main class="main-detail-content">
+
+        <section class="course-info-card card">
+          <div class="course-header">
+            <div class="course-titles">
+              <h1 class="course-title" id="courseName">Loading…</h1>
+              <p class="course-subtitle" id="courseCodeSemester">—</p>
+            </div>
+            <div class="status-chip status-chip--active" id="statusChip">● Active</div>
+          </div>
+
+          <div class="course-metadata-grid">
+
+            <div class="metadata-item">
+              <div class="metadata-icon-wrapper"><i class="fa-solid fa-chalkboard-user"></i></div>
+              <div class="metadata-text">
+                <p class="metadata-label">Instructor</p>
+                <p class="metadata-value" id="courseInstructor">—</p>
+              </div>
+            </div>
+
+            <div class="metadata-item">
+              <div class="metadata-icon-wrapper"><i class="fa-solid fa-location-dot"></i></div>
+              <div class="metadata-text">
+                <p class="metadata-label">Location</p>
+                <p class="metadata-value" id="courseLocation">—</p>
+              </div>
+            </div>
+
+            <div class="metadata-item">
+              <div class="metadata-icon-wrapper"><i class="fa-solid fa-calendar"></i></div>
+              <div class="metadata-text">
+                <p class="metadata-label">Start Date</p>
+                <p class="metadata-value" id="courseStartDate">—</p>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="course-link">
+            <i class="fa-solid fa-link"></i>
+            <a href="#" class="text-link" id="courseLink" target="_blank">—</a>
+          </div>
+        </section>
+
+        <nav class="course-tabs">
+          <button class="tab-button tab-button--active" data-tab="notes">
+            <i class="fa-solid fa-newspaper"></i> <span>Notes</span>
+          </button>
+          <button class="tab-button" data-tab="homework">
+            <i class="fa-solid fa-pen-to-square"></i> <span>Homework</span>
+          </button>
+        </nav>
+
+        <section class="notes-section" id="notesSection">
+          <div class="notes-header">
+            <h2>Course Notes</h2>
+            <button class="btn btn--primary btn--with-icon" id="btnAddNote">
+              <span>+ Add Note</span>
+            </button>
+          </div>
+          <div class="notes-list" id="notesList"></div>
+        </section>
+
+        <section class="homework-section" id="homeworkSection" style="display:none;">
+          <div class="notes-header">
+            <h2>Homework</h2>
+            <button class="btn btn--primary btn--with-icon" id="btnAddHomework">
+              <span>+ Add Homework</span>
+            </button>
+          </div>
+          <div id="homeworkList"></div>
+        </section>
+      </main>
+    </div>
+    <script src="../assets/js/api.js"></script>
+    <script src="../assets/js/modal.js"></script>
+    <script src="../assets/js/detail-list.js"></script>
+  </body>
+</html>

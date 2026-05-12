@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="../assets/images/Logo-Tunotes.png">
+    <meta name="description" content="TuNotes — platform catatan kuliah cerdas untuk mahasiswa Indonesia.">
+    <title>Sign in - TuNotes</title>
+
+    <link rel="stylesheet" href="../assets/css/Login.css" />
+
+</head>
+
+<body class="login-page-background">
+
+    <main class="login-card">
+
+        <div class="login-card__header">
+            <a href="/" class="logo">
+                <img src="../assets/images/Logo-Tunotes.png" alt="TuNotes Icon">
+            </a>
+            <p>Welcome back to your learning space</p>
+        </div>
+
+        <form class="login-form" id="loginForm" novalidate>
+
+            <div class="login-form__header">
+                <h2>Sign in</h2>
+                <p>Enter your credentials to access your account</p>
+            </div>
+
+            <div class="form-group">
+                <label for="identifier">Email or Username</label>
+                <div class="input-with-icon">
+                    <input
+                        type="text"
+                        id="identifier"
+                        name="identifier"
+                        placeholder="Email atau Username"
+                        autocomplete="username"
+                        required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <div class="input-with-icon">
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        placeholder="Masukkan Password"
+                        required>
+                </div>
+                <a href="#" class="form-forgot-password">Forgot password?</a>
+            </div>
+
+            <button type="submit" class="btn btn--primary btn--full-width">
+                Sign in
+            </button>
+
+            <p class="form-register-link">
+                Don't have an account? <a href="Register.html">Register now</a>
+            </p>
+
+        </form>
+    </main>
+
+    <script src="../assets/js/auth.js"></script>
+</body>
+
+</html>

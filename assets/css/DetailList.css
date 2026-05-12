@@ -1,0 +1,341 @@
+/* ========================================= */
+/* 0. BASE STYLES & LAYOUT                   */
+/* ========================================= */
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Inter", Helvetica, sans-serif;
+  color: #1e293b;
+  background: linear-gradient(
+    135deg,
+    rgba(248, 250, 252, 1) 0%,
+    rgba(239, 246, 255, 1) 50%,
+    rgba(241, 245, 249, 1) 100%
+  );
+}
+
+.page-container {
+  width: 100%;
+  min-height: 100vh;
+}
+
+.main-detail-content {
+  margin-top: 80px;
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 32px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.card {
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.05);
+  padding: 32px;
+}
+
+.icon {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+}
+
+.btn {
+  all: unset;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-weight: 500;
+  font-size: 16px;
+  transition: background-color 0.2s;
+}
+
+.btn--primary {
+  background-color: #3b82f6;
+  color: #ffffff;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.btn--primary:hover {
+  background-color: #3068c2;
+}
+
+/* ========================================= */
+/* 1. HEADER 
+/* ========================================= */
+
+.detail-header {
+  background-color: #ffffff;
+  border-bottom: 1px solid #e2e8f0;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  padding: 16px 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 500;
+}
+
+.detail-header .header-content {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.btn-back {
+  all: unset;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #64748b;
+  font-weight: 500;
+  font-size: 16px;
+  transition: color 0.2s;
+}
+
+/* ========================================= */
+/* 2. COURSE INFO CARD   */
+/* ========================================= */
+
+.course-info-card {
+  padding: 32px 32px 24px 32px;
+}
+
+.course-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 24px;
+}
+
+.course-title {
+  font-family: "Poppins", Helvetica, sans-serif;
+  font-weight: 700;
+  font-size: 36px;
+  line-height: 40px;
+  margin: 0;
+}
+
+.course-subtitle {
+  font-weight: 500;
+  color: #64748b;
+  font-size: 18px;
+  margin: 8px 0 0 0;
+}
+
+.status-chip {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  border-radius: 9999px;
+  font-family: "Poppins", Helvetica, sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.status-chip--active {
+  background-color: #10b9811a;
+  color: #10b981;
+}
+
+.course-metadata-grid {
+  display: flex;
+  gap: 200px;
+  border-bottom: 1px solid #e2e8f0;
+  padding-bottom: 24px;
+  margin-bottom: 24px;
+}
+
+.metadata-item {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.metadata-icon-wrapper {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #3b82f61a;
+  border-radius: 8px;
+}
+
+.metadata-icon-wrapper i {
+  width: 20px;
+  height: 20px;
+  color: #3b82f6;
+}
+
+.metadata-label {
+  font-family: "Poppins", Helvetica, sans-serif;
+  font-weight: 500;
+  color: #64748b;
+  font-size: 12px;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.metadata-value {
+  font-weight: 600;
+  color: #1e293b;
+  font-size: 16px;
+  margin: 3px 0 0 0;
+}
+
+.course-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.course-link .text-link {
+  color: #3b82f6;
+  font-weight: 500;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+/* ========================================= */
+/* 3. NAVIGASI            */
+/* ========================================= */
+
+.course-tabs {
+  display: flex;
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.tab-button {
+  all: unset;
+  box-sizing: border-box;
+  flex: 1;
+  text-align: center;
+  padding: 16px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-family: "Poppins", Helvetica, sans-serif;
+  font-weight: 600;
+  color: #475569;
+  font-size: 16px;
+  transition: color 0.2s, background-color 0.2s;
+  border-bottom: 2px solid transparent;
+}
+
+.tab-button--active {
+  background-color: #3b82f60d;
+  color: #3b82f6;
+  border-bottom-color: #3b82f6;
+}
+
+/* ========================================= */
+/* 4. NOTES SECTION (notes-section)          */
+/* ========================================= */
+
+.notes-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 23px;
+}
+
+.notes-header h2 {
+  font-family: "Poppins", Helvetica, sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 32px;
+  margin: 0;
+}
+
+.notes-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.note-card {
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05), 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.note-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.note-date-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.icon-date-wrapper {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  background-color: #3b82f61a;
+  border-radius: 8px;
+}
+
+.icon-date-wrapper i {
+  width: 15px;
+  height: 15px;
+  margin-left: 7px;
+  color: #3b82f6;
+}
+
+.note-date {
+  font-weight: 500;
+  color: #475569;
+  font-size: 16px;
+}
+
+.note-actions {
+  display: flex;
+  gap: 16px;
+  color: #94a3b8;
+  cursor: pointer;
+}
+
+.note-actions i:hover {
+  color: #3b82f6;
+}
+
+.note-title {
+  font-family: "Poppins", Helvetica, sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  margin: 0 0 12px 0;
+  line-height: normal;
+}
+
+.note-preview {
+  font-weight: 400;
+  color: #475569;
+  font-size: 16px;
+  line-height: 26px;
+  margin: 0;
+}

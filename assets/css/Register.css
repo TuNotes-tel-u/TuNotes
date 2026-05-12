@@ -1,0 +1,205 @@
+/* Variables & Reset */
+:root {
+  --primary: #3b82f6;
+  --primary-hover: #2563eb;
+  --bg-light: #f8fafc;
+  --text-main: #111827;
+  --text-muted: #6b7280;
+  --border-color: #e5e7eb;
+  --white: #ffffff;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Inter", sans-serif;
+}
+
+body {
+  background-color: var(--bg-light);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+/* Auth Card */
+.register-container {
+  width: 100%;
+  max-width: 500px;
+  text-align: center;
+}
+
+.auth-card {
+  background: var(--white);
+  padding: 40px;
+  border-radius: 16px;
+  box-shadow:
+    0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  margin-bottom: 24px;
+}
+
+/* Header */
+.logo-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.logo-wrapper img {
+  width: 180px;
+  height: auto;
+}
+
+.auth-header p {
+  color: var(--text-muted);
+  font-size: 16px;
+  margin-bottom: 32px;
+}
+
+/* Form Styling */
+/* Pastikan Form Row berbaris ke samping */
+.form-row {
+  display: flex;
+  gap: 15px; /* Jarak antar input (First vs Last name) */
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+/* Memastikan setiap group nama mengambil ruang yang sama (50:50) */
+.form-row .form-group {
+  flex: 1;
+  margin-bottom: 0;
+}
+
+/* Memastikan label selalu di atas */
+.form-group label {
+  display: block;
+  margin-bottom: 12px;
+  margin-top: 12px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #1e293b;
+  text-align: left;
+}
+
+/* Memastikan input memenuhi lebar container */
+.input-wrapper {
+  width: 100%;
+}
+
+.input-wrapper input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+}
+
+.input-wrapper input:focus {
+  outline: none;
+  border-color: var(--primary);
+  background: #fff;
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+}
+
+/* Checkbox */
+.form-options {
+  margin-top: 18px;
+  margin-bottom: 24px;
+  text-align: left;
+}
+
+.checkbox-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  color: var(--text-main);
+  cursor: pointer;
+}
+
+.checkbox-container a {
+  color: var(--primary);
+  text-decoration: none;
+}
+
+/* Buttons */
+.btn-primary {
+  width: 100%;
+  padding: 14px;
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  transition: background 0.2s;
+}
+
+.btn-primary:hover {
+  background: var(--primary-hover);
+}
+
+/* Divider & Footer */
+.auth-footer {
+  margin-top: 24px;
+}
+
+.auth-footer p {
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+.auth-footer a {
+  color: var(--primary);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.divider {
+  position: relative;
+  margin: 24px 0;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.divider span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 0 12px;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.btn-google {
+  width: 100%;
+  padding: 12px;
+  background: white;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.btn-google i {
+  width: 100px;
+  height: auto;
+}
+
+.bottom-caption {
+  padding-top: 50px;
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.5;
+}

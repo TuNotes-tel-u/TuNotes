@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="../assets/images/Logo-Tunotes.png">
+    <meta name="description" content="TuNotes — platform catatan kuliah cerdas untuk mahasiswa Indonesia.">
+    <title>Detail My Notes - TuNotes</title>
+    <link rel="stylesheet" href="../assets/css/DetailMyNotes.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/akar-icons-fonts"></script>
+</head>
+<body>
+
+    <header class="page-header">
+        <div class="header-content">
+            <a href="MyNotes.html" class="back-button">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="19" y1="12" x2="5" y2="12"></line>
+                    <polyline points="12 19 5 12 12 5"></polyline>
+                </svg>
+            </a>
+            <h3 class="page-title" id="courseTitle">Loading…</h3>
+        </div>
+    </header>
+
+    <main class="main-container">
+
+        <div class="controls-wrapper">
+            <div class="filters-left">
+                <div class="dropdown">
+                    <span>All Status</span>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                </div>
+                
+                <div class="dropdown">
+                    <span>All Dates</span>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                </div>
+
+                <div class="search-box">
+                    <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#9CA3AF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                    <input type="text" placeholder="Search documents...">
+                </div>
+            </div>
+            <div class="create">
+               <a href="UploadNotes.html" class="btn btn-create" ><i class="ai-plus"></i>Create Notes</a>
+            </div>
+        </div>
+
+        <div class="table-card">
+            <table class="notes-table">
+                <thead>
+                    <tr>
+                        <th class="th-doc" style="width: 35%;">Document Title</th>
+                        <th class="th-lecturer" style="width: 20%;">Lecturer</th>
+                        <th class="th-date" style="width: 15%;">Upload Date</th>
+                        <th class="th-actions" style="width: 30%;">Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="notesTableBody"></tbody>
+            </table>
+        </div>
+
+        <div class="pagination-wrapper">
+            <span class="showing-text" id="showingText">…</span>
+            <div class="pagination-controls">
+                <button class="page-btn prev">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                </button>
+                <button class="page-btn active">1</button>
+                <button class="page-btn">2</button>
+                <button class="page-btn">3</button>
+                <button class="page-btn next">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </button>
+            </div>
+        </div>
+    </div>
+    <script src="../assets/js/api.js"></script>
+    <script src="../assets/js/detail-my-notes.js"></script>
+</body>
+</html>

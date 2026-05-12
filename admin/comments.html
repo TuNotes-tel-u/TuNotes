@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="../assets/images/Logo-Tunotes.png">
+    <meta name="description" content="TuNotes — platform catatan kuliah cerdas untuk mahasiswa Indonesia.">
+  <title>Manajemen Komentar — TuNotes Admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+</head>
+<body data-page="comments" data-title="Komentar">
+  <div class="app">
+    <aside class="sidebar" id="sidebar"></aside>
+    <div class="main">
+      <header class="header" id="header"></header>
+      <div class="content">
+        <div class="page-head">
+          <div>
+            <h1 class="page-title">Manajemen Komentar</h1>
+            <p class="page-desc">Pantau interaksi pada kolom diskusi untuk mencegah spam atau pelecehan</p>
+          </div>
+        </div>
+
+        <div class="stats-grid" id="commentStats"></div>
+
+        <div class="filter-bar">
+          <div class="filter-search">
+            <span id="searchIcon"></span>
+            <input id="commentSearch" type="search" placeholder="Cari komentar..." aria-label="Cari komentar" />
+          </div>
+          <div class="filter-tabs" role="tablist">
+            <button class="filter-tab active" data-filter="all">Semua</button>
+            <button class="filter-tab" data-filter="approved">Disetujui</button>
+            <button class="filter-tab" data-filter="flagged">Dilaporkan</button>
+          </div>
+        </div>
+
+        <div id="commentList"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="../assets/js/data.js"></script>
+  <script src="../assets/js/app.js"></script>
+  <script>
+    let comments = [...DATA.comments];
+    const state = { filter: 'all', search: '' };
+
+    function renderStats() {
+      const s = DATA.stats;
+      document.getElementById('commentStats').innerHTML = `
+        <div class="stat-card"><div class="stat-icon blue">${ICONS.message}</div>
+          <div><div class="stat-value">${s.totalComments.toLocaleString('id-ID')}</div><div class="stat-label">Total Komentar</div></div></div>
+        <div class="stat-card"><div class="stat-icon green">${ICONS.check}</div>
+          <div><div class="stat-value">${s.approvedComments.toLocaleString('id-ID')}</div><div class="stat-label">Disetujui</div></div></div>
+        <div class="stat-card"><div class="stat-icon red">${ICONS.alertTriangle}</div>
+          <div><div class="stat-value">${s.flaggedComments}</div><div class="stat-label">Dilaporkan</div></div></div>
+      `;
+    }
+
+    function renderList() {
+      const term = state.search.toLowerCase();
+      const filtered = comments.filter(c => {
+        const mf = state.filter === 'all' || c.status === state.filter;
+        const ms = c.text.toLowerCase().includes(term) || c.user.toLowerCase().includes(term);
+        return mf && ms;
+      });
+      const list = document.getElementById('commentList');
+      if (!filtered.length) {
+        list.innerHTML = `<div class="card" style="padding:32px;text-align:center;color:var(--text-muted)">Tidak ada komentar yang cocok.</div>`;
+        return;
+      }
+      list.innerHTML = filtered.map(c => `
+        <div class="comment-card ${c.status === 'flagged' ? 'flagged' : ''}" data-id="${c.id}">
+          <div class="avatar ${avatarClass(c.user)}">${initials(c.user)}</div>
+          <div style="flex:1;min-width:0">
+            <div class="flex items-center gap-2" style="flex-wrap:wrap">
+              <span style="font-weight:600;font-size:13px">${escapeHtml(c.user)}</span>
+              <span class="text-xs text-muted">pada</span>
+              <span style="font-size:12px;font-weight:500;color:var(--primary)">${escapeHtml(c.note)}</span>
+              <span class="text-xs text-muted">• ${c.time}</span>
+              <span class="badge ${c.status === 'approved' ? 'badge-success' : 'badge-danger'}">${c.status === 'approved' ? 'Disetujui' : 'Dilaporkan'}</span>
+            </div>
+            <p class="comment-text">${escapeHtml(c.text)}</p>
+            <div class="comment-actions">
+              <span class="text-xs text-muted">👍 ${c.likes} suka</span>
+              <button data-act="view">${ICONS.eye} Lihat</button>
+              <button data-act="delete" class="delete-btn">${ICONS.trash} Hapus</button>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function handleAction(act, id) {
+      const c = comments.find(x => x.id === id);
+      if (!c) return;
+      if (act === 'view') {
+        openModal({
+          title: 'Detail Komentar',
+          body: `
+            <div class="flex items-center gap-3" style="margin-bottom:12px">
+              <div class="avatar ${avatarClass(c.user)}">${initials(c.user)}</div>
+              <div>
+                <div style="font-weight:600">${escapeHtml(c.user)}</div>
+                <div class="text-xs text-muted">pada ${escapeHtml(c.note)} • ${c.time}</div>
+              </div>
+            </div>
+            <p style="font-size:13px;line-height:1.6">${escapeHtml(c.text)}</p>
+          `,
+          footer: `<button class="btn btn-outline" onclick="closeModal()">Tutup</button>`
+        });
+      } else if (act === 'delete') {
+        if (confirm('Hapus komentar ini?')) {
+          comments = comments.filter(x => x.id !== id);
+          renderList();
+          showToast('Komentar dihapus');
+        }
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('searchIcon').innerHTML = ICONS.search;
+      renderStats(); renderList();
+      document.getElementById('commentSearch').addEventListener('input', e => {
+        state.search = e.target.value; renderList();
+      });
+      document.querySelectorAll('.filter-tab').forEach(tab => {
+        tab.addEventListener('click', () => {
+          document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+          tab.classList.add('active');
+          state.filter = tab.dataset.filter;
+          renderList();
+        });
+      });
+      document.getElementById('commentList').addEventListener('click', e => {
+        const btn = e.target.closest('button[data-act]');
+        if (!btn) return;
+        const card = btn.closest('[data-id]');
+        handleAction(btn.dataset.act, Number(card.dataset.id));
+      });
+    });
+  </script>
+</body>
+</html>

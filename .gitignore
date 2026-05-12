@@ -1,0 +1,21 @@
+# Konfigurasi sensitif — jangan commit API key apa pun
+config/ai_config.php
+
+# File catatan user (uploads runtime)
+uploads/*
+!uploads/.gitkeep
+
+# Backup file lama dari migrasi Tahap 0
+_legacy/
+
+# Editor & OS junk
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# Test artifact (jangan commit script test sementara)
+tahap*_test.ps1
+*.local.php

@@ -1,0 +1,450 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Inter", Helvetica, sans-serif;
+  color: #1f2937;
+}
+
+.app-container {
+  min-height: 100vh;
+  background-color: #f3f4f6;
+}
+
+/* ========================================= */
+/* 1. SIDEBAR (NAVIGATION)       */
+/* ========================================= */
+
+.sidebar {
+  background-color: #ffffff;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 256px;
+  height: 100vh;
+  overflow-y: auto;
+  z-index: 50;
+  border-right: 1px solid #e5e7eb;
+  padding: 32px 0;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.sidebar__header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 32px 32px;
+  border-bottom: none;
+  margin-bottom: 16px;
+}
+
+.sidebar__brand {
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  color: #1e293b;
+}
+
+.sidebar__nav {
+  flex-grow: 1;
+  padding: 0 16px;
+}
+
+.nav-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 16px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 18px;
+  color: #4b5563;
+  font-weight: 500;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.nav-link:hover {
+  background-color: #f3f4f6;
+}
+
+.nav-link.active {
+  background-color: #3b82f61a;
+  color: #3b82f6;
+}
+
+.nav-link i {
+  font-size: 19px;
+}
+
+.nav-logout {
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 55px;
+  margin-left: 20px;
+  font-size: 19px;
+  gap: 16px;
+  padding: 12px;
+  width: 75%;
+  color: #dc2626;
+}
+
+.nav-logout i {
+  font-size: 19px;
+  font-weight: 500;
+  background-color: transparent;
+  transition: color 0.3s;
+}
+
+.nav-logout:hover {
+  background-color: #fee2e2;
+}
+
+.sidebar__logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-left: -5px;
+  text-decoration: none;
+  font-size: 20px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.sidebar__logo img {
+  width: 150px;
+  height: auto;
+}
+
+/* ========================================= */
+/* 2. MAIN CONTENT & HEADER */
+/* ========================================= */
+
+.main-content {
+  margin-left: 256px;
+  padding-bottom: 32px;
+}
+
+.content-header {
+  background-color: #ffffff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 32px;
+  border-bottom: 1px solid #e5e7eb;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.content-header h1 {
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+  margin: 0;
+  line-height: 32px;
+}
+
+.content-header p {
+  font-size: 16px;
+  color: #4b5563;
+  margin: 7px 0 0 0;
+  line-height: 24px;
+}
+
+.content-header__actions {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.btn {
+  all: unset;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-weight: 500;
+  font-size: 16px;
+  transition: background-color 0.2s;
+  height: 24px;
+}
+
+.btn--primary {
+  background-color: #3b82f6;
+  color: #ffffff;
+}
+
+.btn--primary:hover {
+  background-color: #3068c2;
+}
+
+.select-dropdown {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 148px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  padding: 8px 12px;
+  background-color: #ffffff;
+  cursor: pointer;
+  font-weight: 400;
+  font-size: 16px;
+  color: #374151;
+}
+
+/* ========================================= */
+/* 3. SEMESTER SECTION & COURSE CARD         */
+/* ========================================= */
+
+.semester-section {
+  padding: 32px;
+}
+
+.semester-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.semester-header h2 {
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  margin: 0;
+  line-height: 28px;
+}
+
+.semester-count {
+  font-size: 14px;
+  color: #6b7280;
+  line-height: 20px;
+}
+
+.course-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.course-card {
+  background-color: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  padding: 24px 25px;
+  display: flex;
+  flex-direction: column;
+  height: 218px;
+  box-sizing: border-box;
+}
+
+.course-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.course-icon--blue {
+  background-color: #dbeafe;
+}
+.course-icon--purple {
+  background-color: #f3e8ff;
+}
+.course-icon--green {
+  background-color: #dcfce7;
+}
+.course-icon--orange {
+  background-color: #ffedd5;
+}
+.course-icon--red-light {
+  background-color: #fee2e2;
+}
+.course-icon--blue-dark {
+  background-color: #e0e7ff;
+}
+
+.course-title {
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  color: #1f2937;
+  margin: 0 0 8px 0;
+}
+
+.course-notes-count {
+  font-size: 14px;
+  color: #4b5563;
+  margin: 0 0 16px 0;
+  flex-grow: 1;
+}
+
+.btn--outline {
+  text-decoration: none;
+  all: unset;
+  cursor: pointer;
+  background-color: #3b82f6;
+  color: #ffffff;
+  text-align: center;
+  padding: 9px 0;
+  width: 100%;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
+.btn--outline:hover {
+  background-color: #3068c2;
+}
+
+.course-card--add {
+  background-color: #f9fafb;
+  border: 2px dashed #d1d5db;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0;
+  cursor: pointer;
+}
+
+.course-card--add:hover {
+  background-color: #e6e9ec;
+}
+
+.course-add-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 24px;
+}
+
+.course-card--add .add-icon {
+  width: 48px;
+  height: 48px;
+  background-color: #e5e7eb;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 16px;
+}
+.course-card--add .course-title {
+  color: #4b5563;
+}
+.course-card--add .course-notes-count {
+  color: #6b7280;
+  margin-bottom: 0;
+  flex-grow: 0;
+}
+
+/* ========================================= */
+/* 4. SUMMARY SECTION                        */
+/* ========================================= */
+
+.summary-section {
+  margin: 32px;
+  padding: 32px 33px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.summary-section-title {
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-size: 18px;
+  color: #1f2937;
+  margin: 0 0 24px 0;
+  line-height: normal;
+}
+
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  text-align: center;
+}
+
+.summary-card {
+  border-radius: 8px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 164px;
+  box-sizing: border-box;
+}
+
+.summary-card--blue {
+  background-color: #eff6ff;
+}
+.summary-card--green {
+  background-color: #f0fdf4;
+}
+.summary-card--purple {
+  background-color: #faf5ff;
+}
+
+.summary-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.summary-card--blue .summary-icon {
+  background-color: #3b82f6;
+}
+.summary-card--green .summary-icon {
+  background-color: #22c55e;
+}
+.summary-card--purple .summary-icon {
+  background-color: #a855f7;
+}
+
+.summary-number {
+  font-family: "Inter", sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+  margin-bottom: 4px;
+  line-height: normal;
+}
+
+.summary-card--blue .summary-number {
+  color: #2563eb;
+}
+.summary-card--green .summary-number {
+  color: #16a34a;
+}
+.summary-card--purple .summary-number {
+  color: #9333ea;
+}
+
+.summary-label {
+  font-size: 16px;
+  color: #4b5563;
+  line-height: normal;
+}

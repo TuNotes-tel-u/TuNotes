@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="../assets/images/Logo-Tunotes.png">
+    <meta name="description" content="TuNotes — platform catatan kuliah cerdas untuk mahasiswa Indonesia.">
+    <title>Update Notes - TuNotes</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../assets/css/UpdateNotes.css">
+</head>
+<body>
+
+    <header class="app-header">
+        <div class="header-container">
+            <div class="header-left">
+                <a href="DetailMyNotes.html" class="back-button">
+                    <i class="fa-solid fa-arrow-left"></i>
+                </a>
+                <h1 class="header-title">Update Notes</h1>
+            </div>
+            
+            <div class="header-right">
+                <div class="notif-icons">
+                    <button class="icon-btn">
+                        <i class="fa-regular fa-bell"></i>
+                        <span class="badge" data-notif-badge>3</span>
+                    </button>
+                    <button class="icon-btn">
+                        <i class="fa-regular fa-envelope"></i>
+                        <span class="badge" data-message-badge>2</span>
+                    </button>
+                </div>
+                <div class="user-profile">
+                    <img src="../assets/images/user1.png" alt="" class="avatar" data-user-avatar>
+                    <span class="user-name" data-user-name></span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="page-intro">
+            <h2 class="title">Update Notes</h2>
+            <p class="subtitle">Edit uploaded lecture notes.</p>
+        </div>
+
+        <section class="form-card">
+            <form id="updateForm" class="update-form" novalidate>
+                
+                <div class="form-group">
+                    <label for="courseName">Course Name</label>
+                    <input type="text" id="courseName" value="Algoritma dan Struktur Data" placeholder="Masukkan nama mata kuliah">
+                </div>
+
+                <div class="form-group">
+                    <label for="lecturerName">Lecturer Name</label>
+                    <input type="text" id="lecturerName" value="Dr. Ahmad Santoso, M.Kom" placeholder="Masukkan nama dosen">
+                </div>
+
+                <div class="form-group">
+                    <label for="tagsInput">Tags</label>
+                    <input type="text" id="tagsInput" placeholder="Pisahkan dengan koma, contoh: algoritma, data structure"
+                           style="padding:0.6rem 0.9rem;border:1px solid #d1d5db;border-radius:6px;width:100%;font:inherit;">
+                </div>
+
+                <div class="form-group">
+                    <label for="category">Category</label>
+                    <input type="text" id="category" placeholder="Masukkan kategori"
+                           style="padding:0.6rem 0.9rem;border:1px solid #d1d5db;border-radius:6px;width:100%;font:inherit;">
+                </div>
+
+                <div class="form-group">
+                    <label>Update File (Optional)</label>
+                    <div class="upload-zone">
+                        <i class="fa-solid fa-cloud-arrow-up cloud-icon"></i>
+                        <p class="upload-text">Drop your file here or browse</p>
+                        <p class="upload-hint">Supported formats: PDF, DOC, DOCX, TXT, PPT, PPTX (Max 10MB)</p>
+                        
+                        <div class="file-preview">
+                            <div class="file-info">
+                                <i class="fa-solid fa-file-pdf pdf-icon"></i>
+                                <span class="file-name" id="currentFileName">…</span>
+                            </div>
+                            <span class="file-size" id="currentFileSize">…</span>
+                        </div>
+
+                        <input type="file" id="fileInputUpdate" style="display:none"
+                               accept=".pdf,.doc,.docx,.txt,.ppt,.pptx">
+                        <button type="button" id="chooseNewFile" class="btn-choose">Choose New File</button>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <textarea id="description" rows="5">Catatan lengkap tentang algoritma sorting yang mencakup bubble sort, insertion sort, selection sort, merge sort, dan quick sort. Dilengkapi dengan contoh kode dan analisis kompleksitas waktu untuk setiap algoritma.</textarea>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="btn-cancel">Batalkan</button>
+                    <button type="submit" class="btn-save">
+                        <i class="fa-solid fa-floppy-disk"></i> Simpan Perubahan
+                    </button>
+                </div>
+            </form>
+        </section>
+
+        <section class="tips-container">
+            <div class="tips-content">
+                <div class="tips-icon">
+                    <i class="fa-solid fa-circle-info"></i>
+                </div>
+                <div class="tips-text">
+                    <h3>Tips Mengedit Catatan</h3>
+                    <ul>
+                        <li>Pastikan judul catatan deskriptif dan mudah dicari</li>
+                        <li>Gunakan format file yang didukung (PDF, DOC, DOCX)</li>
+                        <li>Tambahkan deskripsi untuk memudahkan pencarian di masa depan</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="../assets/js/api.js"></script>
+    <script src="../assets/js/modal.js"></script>
+    <script src="../assets/js/user-header.js"></script>
+    <script src="../assets/js/update-notes.js"></script>
+</body>
+</html>

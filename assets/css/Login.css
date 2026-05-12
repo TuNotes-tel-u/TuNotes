@@ -1,0 +1,225 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.login-page-background {
+  font-family: "Inter", Helvetica, sans-serif;
+  background-color: #f9fafb; /* Latar abu-abu muda */
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+  padding: 32px;
+}
+
+/*  2. KARTU LOGIN UTAMA */
+
+.login-card {
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+  padding: 48px;
+  max-width: 448px; /* Lebar tetap kartu */
+  width: 100%; /* Agar responsif di layar kecil */
+  border: 1px solid #e5e7eb;
+}
+
+/* -------------------------------------
+   3. STRUKTUR FORMULIR
+---------------------------------------- */
+
+/* Header: Logo & Teks Sambutan */
+.login-card__header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 32px; /* Spasi ekstra */
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  font-size: 24px;
+  font-weight: 600;
+  color: #111827;
+}
+
+.logo img {
+  width: 120px;
+  height: auto;
+}
+
+.login-card__header p {
+  font-size: 14px;
+  color: #6b7280;
+}
+
+/* Kontainer utama form */
+.login-form {
+  display: flex;
+  flex-direction: column;
+  /* 'gap' mengatur spasi vertikal antar elemen form */
+  gap: 24px;
+}
+
+/* Judul "Sign in" dan sub-judul */
+.login-form__header {
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.login-form__header h2 {
+  font-size: 30px;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 8px;
+}
+
+.login-form__header p {
+  font-size: 14px;
+  color: #4b5563;
+}
+
+/* -------------------------------------
+   4. GRUP INPUT & LABEL
+---------------------------------------- */
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px; /* Spasi antara label dan input */
+}
+
+.form-group label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #374151;
+}
+
+/* Kontainer untuk input dan ikon */
+.input-with-icon {
+  position: relative;
+}
+
+/* Style untuk semua <input> */
+.input-with-icon input {
+  width: 100%;
+  height: 50px;
+  padding: 12px 16px;
+  padding-right: 48px;
+
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  background-color: #f9fafb;
+  font-size: 16px;
+  color: #111827;
+}
+
+.input-with-icon input::placeholder {
+  color: #adaebc;
+}
+
+/* Ikon di dalam input */
+.input-icon {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 18px;
+  height: 18px;
+  pointer-events: none;
+}
+
+/* Tautan "Lupa Password" */
+.form-forgot-password {
+  text-align: right;
+  font-size: 14px;
+  color: #3b82f6;
+  text-decoration: none;
+  font-weight: 500;
+  margin-top: 10px;
+}
+
+.form-forgot-password:hover {
+  text-decoration: underline;
+}
+
+/* -------------------------------------
+   5. TOMBOL (Buttons)
+---------------------------------------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.btn--primary {
+  height: 48px;
+  background-color: #3b82f6;
+  color: #ffffff;
+  border: 1px solid #3b82f6;
+}
+.btn--primary:hover {
+  background-color: #2563eb;
+}
+
+.btn--outline {
+  height: 54px;
+  background-color: #ffffff;
+  color: #374151;
+  border: 1px solid #e5e7eb;
+  gap: 12px;
+}
+.btn--outline:hover {
+  background-color: #f9fafb;
+}
+
+.btn--full-width {
+  width: 100%;
+}
+
+/* -------------------------------------
+   6. ALTERNATIF & PEMISAH
+---------------------------------------- */
+
+.form-register-link {
+  font-size: 16px;
+  color: #4b5563;
+  text-align: center;
+}
+
+.form-register-link a {
+  color: #3b82f6;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.form-register-link a:hover {
+  text-decoration: underline;
+}
+
+.form-separator {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  color: #6b7280;
+  font-size: 14px;
+}
+
+.form-separator::before,
+.form-separator::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background-color: #e5e7eb;
+}

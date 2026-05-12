@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="../assets/images/Logo-Tunotes.png">
+    <meta name="description" content="TuNotes — platform catatan kuliah cerdas untuk mahasiswa Indonesia.">
+    <title>TuNotes - Smarter Lecture Notes</title>
+    <link rel="stylesheet" href="../assets/css/LandingPage.css" />
+    <script src="https://unpkg.com/akar-icons-fonts"></script>
+    <style>
+        html { scroll-behavior: smooth; }
+        /* Nav state: di-toggle oleh JS auth check. Default: tampil guest, hidden user. */
+        .nav-user-only { display: none; }
+        body.is-logged-in .nav-guest-only { display: none; }
+        body.is-logged-in .nav-user-only { display: list-item; }
+        .nav-user-mini {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            text-decoration: none; padding: 0.4rem 0.75rem; border-radius: 8px;
+            background: #f3f4f6; color: #111827; font-weight: 500;
+        }
+        .nav-user-mini__avatar {
+            width: 28px; height: 28px; border-radius: 50%; display: inline-flex;
+            align-items: center; justify-content: center; color: #fff; font-weight: 600; font-size: 0.8rem;
+            flex-shrink: 0; overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <nav class="navbar container">
+           <a href="LandingPage.html">
+             <div class="logo">
+                <img src="../assets/images/Logo-Tunotes.png" alt="TuNotes Logo">
+            </div>
+           </a>
+
+            <input type="checkbox" id="menu-toggle" class="menu-toggle-checkbox">
+
+            <ul class="nav-links">
+                <li><a href="#features">Features</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#testimonials">Testimonials</a></li>
+                <li class="nav-guest-only"><a href="login.html">Login</a></li>
+                <li class="nav-guest-only">
+                    <a href="register.html" class="btn-primary">Register</a>
+                </li>
+                <li class="nav-user-only">
+                    <a href="Dashboard.html" class="nav-user-mini">
+                        <span class="nav-user-mini__avatar" data-user-avatar>U</span>
+                        <span data-user-name>User</span>
+                    </a>
+                </li>
+            </ul>
+
+            <label for="menu-toggle" class="menu-toggle">
+                <span></span><span></span><span></span>
+            </label>
+        </nav>
+    </header>
+
+    <main>
+        <section id="hero" class="hero container">
+            <div class="hero_content">
+                <h1 class="hero_title">
+                    Lecture Notes, <br><span style="color: #2563eb;">Smarter.</span>
+                </h1>
+                <p class="hero_subtitle">
+                    Temukan, bagikan, dan rangkum catatan kuliah dengan teknologi AI.
+                </p>
+                <div class="hero_buttons">
+                    <a href="login.html" class="btn btn-primary">Login with Student Email</a>
+                    <a href="register.html" class="btn btn-outline">Register Now for Free</a>
+                </div>
+            </div>
+            <div class="hero_image">
+                <img src="../assets/images/HOME.png" alt="TuNotes application preview on a tablet">
+            </div>
+        </section>
+
+        <section id="features" class="features container">
+            <div class="section-header">
+                <h2 class="section-title">Why TuNotes?</h2>
+                <p class="section-subtitle">Temukan fitur-fitur canggih yang dirancang untuk pembelajaran yang lebih cerdas</p>
+            </div>
+
+            <div class="features_grid">
+                <article class="feature-card">
+                    <div class="feature-card_icon"><img src="../assets/images/c1.png" alt=""></div>
+                    <h3 class="feature-card_title">AI Summary</h3>
+                    <p class="feature-card_text">Ringkasan otomatis file PDF atau catatan gambar menggunakan teknologi AI canggih.</p>
+                </article>
+                <article class="feature-card">
+                    <div class="feature-card_icon"><img src="../assets/images/c2.png" alt=""></div>
+                    <h3 class="feature-card_title">Easy Upload</h3>
+                    <p class="feature-card_text">Seret & lepas file catatan, masukkan informasi mata kuliah dan dosen dengan mudah.</p>
+                </article>
+                <article class="feature-card">
+                    <div class="feature-card_icon"><img src="../assets/images/c3.png" alt=""></div>
+                    <h3 class="feature-card_title">Favourites</h3>
+                    <p class="feature-card_text">Simpan catatan terbaik kamu dengan nyaman dan aman.</p>
+                </article>
+                <article class="feature-card">
+                    <div class="feature-card_icon"><img src="../assets/images/c4.png" alt=""></div>
+                    <h3 class="feature-card_title">Note Details</h3>
+                    <p class="feature-card_text">Detail catatan lengkap dengan preview, komentar, rating, dan dapat diunduh.</p>
+                </article>
+                <article class="feature-card">
+                    <div class="feature-card_icon"><img src="../assets/images/c5.png" alt=""></div>
+                    <h3 class="feature-card_title">Social Profile</h3>
+                    <p class="feature-card_text">Kelola akun kamu, lihat riwayat, dan tampilkan kontribusi akademis.</p>
+                </article>
+                <article class="feature-card">
+                    <div class="feature-card_icon"><img src="../assets/images/c6.png" alt=""></div>
+                    <h3 class="feature-card_title">Reviews</h3>
+                    <p class="feature-card_text">Tinggalkan ulasan untuk membantu mahasiswa lain mendapatkan pengetahuan.</p>
+                </article>
+            </div>
+
+            <div class="features_buttons">
+                <a href="Dashboard.html" class="btn btn-primary">View Popular Notes</a>
+                <a href="UploadNotes.html" class="btn btn-outline">Start Uploading</a>
+            </div>
+        </section>
+
+        <section id="about" class="about container">
+            <div class="about_content">
+                <h2 class="section-title">About TuNotes</h2>
+                <p class="about_description">
+                    TuNotes adalah platform sosial akademik untuk mahasiswa Indonesia. Kami percaya bahwa kolaborasi dan
+                    teknologi dapat membuat pembelajaran lebih efisien dan menyenangkan.
+                </p>
+                <div class="about_missions">
+                    <div class="mission-item">
+                        <h3 class="mission-item_title">Misi kami</h3>
+                        <p class="mission-item_text">Untuk membantu mahasiswa belajar lebih cerdas melalui teknologi inovatif dan pembelajaran kolaboratif.</p>
+                    </div>
+                    <div class="mission-item">
+                        <h3 class="mission-item_title">Visi Kami</h3>
+                        <p class="mission-item_text">Menjadi pusat catatan kuliah digital terkemuka di Asia dan memberdayakan mahasiswa di seluruh kawasan.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="about_image">
+                <img src="../assets/images/About-us.jpg" alt="Indonesian students collaborating and studying together">
+                <p class="about_image-caption">"Memberdayakan pelajar Indonesia melalui kolaborasi yang lebih cerdas"</p>
+            </div>
+        </section>
+
+        <section id="testimonials" class="testimonials container">
+            <div class="section-header">
+                <h2 class="section-title">What Students Say</h2>
+                <p class="section-subtitle">Umpan balik nyata dari komunitas kami</p>
+            </div>
+
+            <div class="testimonials_grid">
+                <article class="testimonial-card">
+                    <div class="testimonial-card_header">
+                        <img src="../assets/images/user1.png" alt="Aisha Rahman" class="testimonial-card_avatar">
+                        <div class="testimonial-card_author">
+                            <h4>Aisha Rahman</h4>
+                            <p>Mahasiswa Ilmu Komputer</p>
+                        </div>
+                    </div>
+                    <p class="testimonial-card_body">
+                        "Ringkasan AI sangat membantu! Sangat menghemat waktu saya saat meninjau materi kuliah."
+                    </p>
+                </article>
+                <article class="testimonial-card">
+                    <div class="testimonial-card_header">
+                        <img src="../assets/images/user3.png" alt="Irham Shidiq" class="testimonial-card_avatar">
+                        <div class="testimonial-card_author">
+                            <h4>Irham Shidiq</h4>
+                            <p>Mahasiswa Teknik</p>
+                        </div>
+                    </div>
+                    <p class="testimonial-card_body">
+                        "Mengunggah cepat dan mudah. Platform ini memudahkan berbagi catatan dengan teman sekelas."
+                    </p>
+                </article>
+            </div>
+
+            <div class="testimonials_buttons">
+                <a href="register.html" class="btn btn-primary">Sign Up Now</a>
+                <a href="#features" class="btn btn-outline">See Full Features</a>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-container container">
+            <div class="footer__about">
+                <a href="LandingPage.html" class="footer__logo">
+                    <img src="../assets/images/Logo-Tunotes.png" alt="TuNotes Icon">
+                </a>
+                <div class="social-media">
+                    <a href="#"><i class="ai-instagram-fill"></i></a>
+                    <a href="#"><i class="ai-x-fill"></i></a>
+                    <a href="#"><i class="ai-linkedin-box-fill"></i></a>
+                    <a href="#"><i class="ai-facebook-fill"></i></a>
+                </div>
+                <p class="footer__tagline">Smarter Lecture Notes</p>
+                <p class="footer__copyright">© 2025 TuNotes</p>
+                <p class="footer__description">
+                    TuNotes adalah platform digital bagi mahasiswa Indonesia yang ingin belajar lebih efisien.
+                </p>
+            </div>
+            <div class="footer_nav">
+                <h3>Company</h3>
+                <ul>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#">Our Team</a></li>
+                    <li><a href="#">Terms & Privacy</a></li>
+                    <li><a href="#testimonials">Testimonials</a></li>
+                </ul>
+            </div>
+            <div class="footer_social">
+                <h3>Help & Social</h3>
+                <ul>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Help Centre</a></li>
+                    <li><a href="#">Community</a></li>
+                    <li><a href="#">support@tunotes.id</a></li>
+                </ul>
+            </div>
+            <div class="footer_unduh">
+                <h3>Download</h3>
+                <ul>
+                    <li><a href="#">iOS & Android</a></li>
+                    <li><a href="#">Mac & Windows</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../assets/js/api.js"></script>
+    <script>
+    // Deteksi login state → toggle nav guest/user. Pakai api.get tapi NO auto-redirect 401.
+    (async function () {
+        try {
+            const { data } = await api.get('../api/auth.php', { autoRedirect: false });
+            if (data && data.success) {
+                document.body.classList.add('is-logged-in');
+                const u = data.data;
+                const nameEl = document.querySelector('.nav-user-mini [data-user-name]');
+                if (nameEl) nameEl.textContent = u.name || u.username || 'User';
+                const avatarEl = document.querySelector('.nav-user-mini [data-user-avatar]');
+                if (avatarEl) {
+                    const initial = (u.name || u.username || '?').trim().charAt(0).toUpperCase();
+                    const colors = ['#ef4444','#f59e0b','#10b981','#3b82f6','#8b5cf6','#ec4899','#06b6d4','#0891b2'];
+                    const seed = u.username || u.name || '';
+                    let h = 0;
+                    for (let i = 0; i < seed.length; i++) h = ((h << 5) - h + seed.charCodeAt(i)) | 0;
+                    avatarEl.style.background = colors[Math.abs(h) % colors.length];
+                    avatarEl.textContent = initial;
+                }
+            }
+        } catch (_) { /* guest atau network error — biarkan nav guest tampil */ }
+    })();
+    </script>
+</body>
+</html>

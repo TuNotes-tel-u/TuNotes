@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/png" href="../assets/images/Logo-Tunotes.png">
+    <meta name="description" content="TuNotes — platform catatan kuliah cerdas untuk mahasiswa Indonesia.">
+    <meta charset="utf-8" />
+    <title>TuNotes - My Favorites</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-regular-rounded/css/uicons-regular-rounded.css'>
+    <link rel="stylesheet" href="../assets/css/MyFavorites.css" /> 
+     <!-- Lucide Icons (Menggunakan CDN untuk ikon) -->
+    <script src="https://unpkg.com/akar-icons-fonts"></script>
+</head>
+<body>
+
+<div class="app-container">
+    
+    <aside class="sidebar">
+        <div class="sidebar__header">
+             <a href="Dashboard.html" class="top-header__logo">
+                <img src="../assets/images/Logo-Tunotes.png" alt="TuNotes Icon">
+             </a>
+        </div>
+
+        <nav class="main-nav">
+            <ul class="nav-list">
+                <li class="nav-item">
+                    <a href="Dashboard.html" class="nav-link"><i data-lucide="folder-dot" class="ai-home-alt1"></i> Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="MyNotes.html" class="nav-link"><i data-lucide="folder-dot" class="ai-file"></i> My Notes</a>
+                </li>
+                <li class="nav-item active">
+                    <a href="MyFavorites.html" class="nav-link active"><i data-lucide="folder-dot" class="ai-heart"></i> Favorit</a>
+                </li>
+                <li class="nav-item">
+                    <a href="UploadNotes.html" class="nav-link"><i data-lucide="folder-dot" class="ai-cloud-upload"></i> Upload Notes</a>
+                </li>
+                <li class="nav-item">
+                    <a href="NotesAI.html" class="nav-link"><i data-lucide="folder-dot" class="fi fi-rr-robot"></i> Notes AI</a>
+                </li>
+                <li class="nav-item">
+                    <a href="NotesRead.html" class="nav-link"><i data-lucide="folder-dot" class="ai-folder"></i> Notes Read</a>
+                </li>
+                <li class="nav-item">
+                    <a href="StudyList.html" class="nav-link"><i data-lucide="folder-dot" class="ai-schedule"></i> Study List</a>
+                </li>
+                <li class="nav-item">
+                    <a href="Profil.html" class="nav-link"><i data-lucide="folder-dot" class="ai-person"></i> Profil</a>
+                </li>
+            </ul>
+        </nav>
+
+         <div class="logout">
+              <a href="LandingPage.html" class="nav-logout"><i class="ai-sign-out"></i>
+                <span>Logout</span>
+              </a>
+         </div>
+    </aside>
+
+    <main class="main-content">
+        
+        <header class="content-header">
+            <div class="header__left">
+                <h1 class="page-title">My Favorites</h1>
+                <p class="page-subtitle">Your saved notes and study materials</p>
+            </div>
+            <div class="header__right">
+                <button class="btn--icon">
+                    <i class="ai-bell"></i>
+                    <span class="badge" data-notif-badge>3</span>
+                </button>
+                <button class="btn--icon">
+                    <i class="ai-envelope"></i>
+                    <span class="badge" data-message-badge>2</span>
+                </button>
+                <button class="user-profile">
+                    <img src="../assets/images/user1.png" alt="" class="avatar" data-user-avatar>
+                    <span data-user-name></span>
+                    <i class="ai-chevron-down"></i>
+                </button>
+            </div>
+        </header>
+
+        <div class="action-bar">
+            <div class="sort-controls">
+                <label for="sort-select" class="sort-label">Sort by:</label>
+                <select id="sort-select" class="select-box">
+                    <option selected>Date Added</option>
+                    <option>Rating</option>
+                    <option>Title</option>
+                </select>
+                <i class="fas fa-caret-down icon-dropdown"></i> 
+            </div>
+        </div>
+        
+        <div class="notes-scroll-wrapper">
+            <div class="favorite-list">
+                
+                <div class="favorite-card">
+                    <div class="card__main-content">
+                        <div class="card__details">
+                            <div class="card__title-group">
+                                <div class="card__icon-wrapper math-icon"><i class="fas fa-calculator"></i></div>
+                                <h3 class="card__title">Advanced Calculus: Derivatives and Integration</h3>
+                            </div>
+                            <p class="card__description">Comprehensive notes covering advanced calculus concepts including limits, derivatives, and integration techniques with practical examples.</p>
+                        </div>
+                        <div class="card__metadata-actions">
+                            <div class="card__metadata">
+                                <span class="metadata-item">Mathematics • Prof. Sarah Johnson</span>
+                                <div class="rating-group">
+                                    <span class="rating-stars">
+                                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                                    </span>
+                                    <span class="rating-value">4.9</span>
+                                </div>
+                                <span class="metadata-item">• Added 2 days ago • 45 pages</span>
+                            </div>
+                            <div class="card__actions">
+                                <button class="btn btn--view-details">View Details</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="favorite-card">
+                    <div class="card__main-content">
+                        <div class="card__details">
+                            <div class="card__title-group">
+                                <div class="card__icon-wrapper chem-icon"><i class="fas fa-flask"></i></div>
+                                <h3 class="card__title">Organic Chemistry: Molecular Structures</h3>
+                            </div>
+                            <p class="card__description">Detailed study of organic molecular structures, bonding patterns, and reaction mechanisms with visual diagrams and examples.</p>
+                        </div>
+                        <div class="card__metadata-actions">
+                            <div class="card__metadata">
+                                <span class="metadata-item">Chemistry • Dr. Michael Chen</span>
+                                <div class="rating-group">
+                                    <span class="rating-stars">
+                                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
+                                    </span>
+                                    <span class="rating-value">4.2</span>
+                                </div>
+                                <span class="metadata-item">• Added 1 week ago • 62 pages</span>
+                            </div>
+                            <div class="card__actions">
+                                <button class="btn btn--view-details">View Details</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="favorite-card">
+                    <div class="card__main-content">
+                        <div class="card__details">
+                            <div class="card__title-group">
+                                <div class="card__icon-wrapper psych-icon" style="background-color: #f3e8ff;"><i class="fas fa-brain" style="color: #9333ea;"></i></div>
+                                <h3 class="card__title">Cognitive Psychology: Memory and Learning</h3>
+                            </div>
+                            <p class="card__description">Exploration of cognitive processes including memory formation, learning theories, and information processing models.</p>
+                        </div>
+                        <div class="card__metadata-actions">
+                            <div class="card__metadata">
+                                <span class="metadata-item">Psychology • Prof. Emily Rodriguez</span>
+                                <div class="rating-group">
+                                    <span class="rating-stars">
+                                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                                    </span>
+                                    <span class="rating-value">4.8</span>
+                                </div>
+                                <span class="metadata-item">• Added 3 days ago • 38 pages</span>
+                            </div>
+                            <div class="card__actions">
+                                <button class="btn btn--view-details">View Details</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="favorite-card">
+                    <div class="card__main-content">
+                        <div class="card__details">
+                            <div class="card__title-group">
+                                <div class="card__icon-wrapper history-icon" style="background-color: #fee2e2;"><i class="fas fa-book-open" style="color: #dc2626;"></i></div>
+                                <h3 class="card__title">World History: Renaissance Period</h3>
+                            </div>
+                            <p class="card__description">Comprehensive coverage of the Renaissance period including cultural, political, and artistic developments across Europe.</p>
+                        </div>
+                        <div class="card__metadata-actions">
+                            <div class="card__metadata">
+                                <span class="metadata-item">History • Dr. James Wilson</span>
+                                <div class="rating-group">
+                                    <span class="rating-stars">
+                                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                                    </span>
+                                    <span class="rating-value">4.5</span>
+                                </div>
+                                <span class="metadata-item">• Added 5 days ago • 52 pages</span>
+                            </div>
+                            <div class="card__actions">
+                                <button class="btn btn--view-details">View Details</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="favorite-card">
+                    <div class="card__main-content">
+                        <div class="card__details">
+                            <div class="card__title-group">
+                                <div class="card__icon-wrapper cs-icon" style="background-color: #e0e7ff;"><i class="fas fa-code" style="color: #4f46e5;"></i></div>
+                                <h3 class="card__title">Data Structures and Algorithms</h3>
+                            </div>
+                            <p class="card__description">Complete guide to fundamental data structures and algorithms with implementation examples and complexity analysis.</p>
+                        </div>
+                        <div class="card__metadata-actions">
+                            <div class="card__metadata">
+                                <span class="metadata-item">Computer Science • Prof. Areeb Kumar</span>
+                                <div class="rating-group">
+                                    <span class="rating-stars">
+                                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                                    </span>
+                                    <span class="rating-value">4.9</span>
+                                </div>
+                                <span class="metadata-item">• Added 1 week ago • 76 pages</span>
+                            </div>
+                            <div class="card__actions">
+                                <button class="btn btn--view-details">View Details</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+
+            </div>
+        </div>
+
+        <footer class="content-footer">
+            <p class="pagination-info">Showing 1 to 5 of 24 results</p>
+            <div class="pagination-controls">
+                <button class="btn btn--page"><i class="fas fa-chevron-left"></i></button>
+                <button class="btn btn--page active">1</button>
+                <button class="btn btn--page">2</button>
+                <button class="btn btn--page">3</button>
+                <div class="pagination-dots">...</div>
+                <button class="btn btn--page">8</button>
+                <button class="btn btn--page"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </footer>
+        
+    </main>
+</div>
+
+<script src="../assets/js/api.js"></script>
+<script src="../assets/js/user-header.js"></script>
+<script src="../assets/js/favorites.js"></script>
+</body>
+</html>

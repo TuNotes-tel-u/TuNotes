@@ -1,0 +1,400 @@
+/* Base Style & Reset Ringan */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Inter", Helvetica, Arial, sans-serif;
+  background-color: #f8fafc;
+}
+
+button,
+input,
+select {
+  font-family: inherit;
+  font-size: 100%;
+}
+
+/* ---------------------------------------------------- */
+/* --- 1. LAYOUT UTAMA (FIXED LAYOUT) --- */
+/* ---------------------------------------------------- */
+.app-container {
+  display: grid;
+  grid-template-columns: 256px 1fr;
+  height: 100vh; /* Mengisi seluruh tinggi viewport */
+  overflow: hidden; /* Mencegah body/app-container scroll */
+}
+
+/* ---------------------------------------------------- */
+/* --- 2. SIDEBAR (NAVIGASI KIRI) --- */
+/* ---------------------------------------------------- */
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  border-right: 1px solid #e2e8f0;
+  padding: 24px 0;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: hidden;
+}
+
+.sidebar__header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 0 25px 24px;
+  border-bottom: none; /* Dihapus */
+}
+
+.top-header__logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  font-size: 20px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.top-header__logo img {
+  width: 150px;
+  height: auto;
+}
+
+.main-nav {
+  flex-grow: 1;
+  padding: 24px 8px;
+}
+
+.nav-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.nav-link {
+  display: flex;
+  width: 100%;
+  border-radius: 8px;
+  align-items: center;
+  gap: 16px;
+  padding: 12px;
+  text-decoration: none;
+  color: #475569;
+  font-size: 16px;
+  font-weight: 400;
+  border-radius: 8px;
+  transition: background-color 0.2s;
+}
+
+.nav-item {
+  gap: 2px;
+  padding: 12px;
+  height: 48px;
+}
+
+.nav-link:hover {
+  background-color: #f3f4f6; /* Gray-100 */
+  color: #111827;
+}
+
+.nav-link i {
+  width: 16px;
+  text-align: center;
+}
+
+.nav-item.active .nav-link {
+  background-color: rgba(59, 130, 246, 0.1); /* Blue-100 equivalent */
+  color: #3b82f6; /* Blue-500 */
+  font-weight: 500;
+}
+
+.sidebar__footer {
+  padding: 24px 32px;
+}
+
+.btn-logout {
+  text-decoration: none;
+  cursor: pointer;
+  margin-top: 28px;
+  margin-left: -10px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  gap: 16px;
+  padding: 12px;
+  color: #dc2626; /* Merah */
+}
+
+.btn-logout:hover {
+  background-color: #fee2e2; /* Latar merah muda */
+}
+
+/* ---------------------------------------------------- */
+/* --- 3. MAIN CONTENT (FIXED KANAN) --- */
+/* ---------------------------------------------------- */
+.main-content {
+  display: flex;
+  flex-direction: column;
+  /* Konten ini tidak scroll */
+  height: 100%;
+  overflow: hidden;
+}
+
+/* Header Konten (Fixed Atas) */
+.content-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100px;
+  padding: 24px 32px;
+  border-bottom: 1px solid #e2e8f0;
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+  flex-shrink: 0; /* Pastikan tidak menyusut */
+  z-index: 11; /* Paling tinggi */
+}
+
+.page-title {
+  font-size: 24px;
+  font-weight: 600;
+  color: #1e293b;
+  line-height: 32px;
+}
+
+.page-subtitle {
+  font-size: 16px;
+  color: #475569;
+}
+
+.header__right {
+  display: flex;
+  align-items: center;
+  gap: 32px; /* Ditingkatkan untuk jarak antar ikon/profil */
+}
+
+/* Perbaikan Penempatan Badge */
+.btn--icon {
+  position: relative;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  color: #475569;
+  padding: 0 10px; /* Ditambahkan padding untuk ruang badge */
+}
+
+.badge {
+  position: absolute;
+  top: -5px;
+  right: 0px; /* Disesuaikan ke tepi container */
+  background-color: #ef4444;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 400;
+  padding: 2px 6px;
+  border-radius: 9999px;
+  line-height: 1;
+}
+
+.user-profile {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px 16px;
+  border-radius: 8px;
+}
+
+.avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 9999px;
+  object-fit: cover;
+}
+
+/* Action Bar (Fixed di bawah Header) */
+.action-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 32px;
+  background-color: #f8fafc;
+  border-bottom: 1px solid #e2e8f0;
+
+  flex-shrink: 0; /* Pastikan tidak menyusut */
+  z-index: 10;
+}
+
+/* ... Styles Filter Controls & Buttons ... (Tetap Sama) */
+
+.filter-controls {
+  display: flex;
+  gap: 16px;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.select-box {
+  appearance: none;
+  -webkit-appearance: none;
+  background-color: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  padding: 8px 16px;
+  padding-right: 35px;
+  height: 42px;
+  font-size: 16px;
+  color: #334155;
+  cursor: pointer;
+}
+
+.icon-dropdown {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #94a3b8;
+  pointer-events: none;
+}
+
+.search-box {
+  position: relative;
+}
+
+.input-search {
+  width: 256px;
+  height: 42px;
+  padding: 8px 16px;
+  padding-left: 40px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  font-size: 16px;
+  color: #1e293b;
+}
+
+.icon-search {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #94a3b8;
+}
+
+.btn {
+  all: unset;
+  box-sizing: border-box;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
+
+.btn--primary {
+  background-color: #3b82f6;
+  color: #ffffff;
+  height: 40px;
+  padding: 0 16px;
+  gap: 8px;
+}
+
+.btn--primary:hover {
+  background-color: #2563eb;
+}
+
+/* --- 4. NOTES SCROLL WRAPPER (Bagian yang di-scroll) --- */
+.notes-scroll-wrapper {
+  flex-grow: 1; /* Mengisi semua ruang vertikal yang tersisa */
+  overflow-y: auto; /* Ini adalah scroller utama kita */
+}
+
+.notes-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
+  padding: 24px 32px;
+  z-index: 1;
+}
+
+.note-card {
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s, box-shadow 0.2s;
+  height: 300px;
+}
+
+.note-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.note-card__image {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+}
+
+.note-card__body {
+  text-decoration: none;
+  padding: 16px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.note-card__title {
+  text-decoration: none; /* Menghapus garis bawah */
+  font-size: 14px;
+  font-weight: 600;
+  color: #111827; /* Mengunci warna agar tetap hitam gelap */
+  margin-bottom: 8px;
+  display: block; /* Memastikan area klik mencakup seluruh baris */
+
+  /* Efek Ellipsis jika judul terlalu panjang */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 24px;
+}
+
+.note-card__title:hover {
+  color: #3b82f6; /* Berubah jadi biru saat disentuh mouse */
+  text-decoration: none;
+}
+
+.note-card__title:visited {
+  color: #111827;
+}
+
+.note-card__author {
+  font-size: 14px;
+  color: #4b5563;
+  margin-bottom: 24px;
+}
+
+.note-card__date {
+  font-size: 14px;
+  color: #6b7280;
+  margin-top: auto;
+  text-align: right;
+}

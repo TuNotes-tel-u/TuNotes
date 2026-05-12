@@ -1,0 +1,482 @@
+/* Reset Dasar */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Inter", Helvetica, sans-serif;
+  background-color: #f8fafc; /* Latar belakang aplikasi */
+}
+
+/* --- STRUKTUR APLIKASI --- */
+
+.app-container {
+  display: flex;
+  min-height: 100vh;
+}
+
+.sidebar {
+  width: 256px;
+  background-color: #ffffff;
+  border-right: 1px solid #e5e7eb;
+  box-shadow: 2px 0 2px 0 rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+}
+
+.main-content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: #f8fafc;
+  /* PERBAIKAN: Hapus padding horizontal dari main-content */
+  padding: 0 0 32px 0;
+}
+
+/* --- HEADER KONTEN UTAMA (STICKY & EDGE-TO-EDGE) --- */
+
+.content-header {
+  width: 100%;
+  padding: 24px 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #e2e8f0;
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+  height: 90px;
+
+  /* MODIFIKASI: Mengubah position dari sticky menjadi sticky (hanya memastikan z-index yang tepat) */
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.header__left {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.page-title {
+  font-weight: 700;
+  font-size: 30px;
+  color: #111827;
+  line-height: 1.2;
+}
+
+.page-subtitle {
+  font-weight: 400;
+  font-size: 16px;
+  color: #4b5563;
+}
+
+.header__right {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.btn--icon {
+  background: none;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  color: #4b5563;
+}
+
+.btn--icon .ai-bell,
+.btn--icon .ai-envelope {
+  font-size: 24px;
+}
+
+.badge {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background-color: #ef4444;
+  color: white;
+  font-size: 12px;
+  width: 20px;
+  height: 20px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+}
+
+.header__right .btn--icon:nth-child(2) .badge {
+  background-color: #3b82f6;
+}
+
+.user-profile {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  color: #4b5563;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.user-profile .avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 9999px;
+  object-fit: cover;
+}
+.user-profile .fa-caret-down {
+  font-size: 12px;
+  margin-left: 4px;
+}
+
+/* --- SIDEBAR NAVIGASI --- */
+
+.sidebar__header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 32px;
+  margin-bottom: 16px;
+}
+
+.top-header__logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  font-size: 20px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.top-header__logo img {
+  width: 150px;
+  height: auto;
+}
+
+.nav-list {
+  list-style: none;
+  padding: 0 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.nav-item a.nav-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  border-radius: 8px;
+  text-decoration: none;
+  color: #4b5563;
+  font-size: 14px;
+  font-weight: 400;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.nav-item a.nav-link i {
+  width: 20px;
+  text-align: center;
+}
+
+.nav-link.active {
+  color: #3b82f6;
+}
+
+.nav-item.active a.nav-link {
+  background-color: #3b82f61a;
+  color: #3b82f6;
+  font-weight: 500;
+}
+
+.nav-link:hover {
+  background-color: #e5e7eb;
+}
+
+.logout {
+  padding: 32px;
+}
+
+.nav-logout {
+  width: 117%;
+  display: flex;
+  cursor: pointer;
+  text-decoration: none;
+  border-radius: 8px;
+  font-size: 14px;
+  margin-top: 20px;
+  margin-left: -10px;
+  align-items: center;
+  gap: 16px;
+  padding: 12px;
+  color: #dc2626; /* Merah */
+}
+
+.nav-logout:hover {
+  background-color: #fee2e2; /* Latar merah muda */
+}
+
+/* --- ACTION BAR (STICKY) --- */
+
+.action-bar {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  /* PERBAIKAN: Tambahkan padding 32px di kiri dan kanan */
+  padding: 24px 32px;
+  margin-bottom: 8px;
+  background-color: #f8fafc;
+  position: sticky;
+  top: 90px;
+  z-index: 5;
+}
+
+.sort-controls {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  position: relative;
+}
+
+.sort-label {
+  font-size: 14px;
+  color: #4b5563;
+  font-weight: 500;
+}
+
+.select-box {
+  width: 180px;
+  padding: 4px 12px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  font-size: 14px;
+  color: #111827;
+  appearance: none;
+  height: 40px;
+}
+
+.icon-dropdown {
+  position: absolute;
+  right: 48px; /* Sesuaikan posisi ikon panah karena padding 32px */
+  color: #4b5563;
+  font-size: 14px;
+  pointer-events: none;
+}
+
+/* --- DAFTAR FAVORIT & ITEM KARTU --- */
+
+.notes-scroll-wrapper {
+  flex-grow: 1;
+  overflow-y: visible;
+  /* PERBAIKAN: Tambahkan padding 32px di kiri dan kanan */
+  padding: 0 32px 0 32px;
+}
+
+.favorite-list {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.favorite-card {
+  display: flex;
+  padding: 24px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.card__main-content {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  gap: 24px;
+}
+
+.card__details {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.card__title-group {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.card__icon-wrapper {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  font-size: 18px;
+}
+
+.card__icon-wrapper i {
+  color: #3b82f6;
+}
+
+/* Warna Ikon Spesifik (Hard-coded) */
+.math-icon {
+  background-color: #dbeafe;
+}
+.math-icon i {
+  color: #2563eb;
+}
+
+.chem-icon {
+  background-color: #dcfce7;
+}
+.chem-icon i {
+  color: #15803d;
+}
+/* Ikon Lainnya: ditambahkan inline di HTML, atau bisa ditambahkan di sini */
+
+.card__title {
+  font-weight: 600;
+  font-size: 18px;
+  color: #111827;
+  line-height: 1.5;
+}
+
+.card__description {
+  font-weight: 400;
+  font-size: 14px;
+  color: #4b5563;
+  line-height: 1.4;
+}
+
+.card__metadata-actions {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-shrink: 0;
+  gap: 16px;
+}
+
+.card__metadata {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 400;
+  color: #4b5563;
+}
+
+.rating-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 500;
+  color: #111827;
+}
+
+.rating-stars i {
+  color: orange;
+  font-size: 12px;
+}
+
+.card__actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+/* Tombol Aksi */
+.btn {
+  all: unset;
+  box-sizing: border-box;
+  cursor: pointer;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  transition: background-color 0.2s, color 0.2s;
+  height: 36px;
+}
+
+.btn--view-details {
+  display: flex;
+  align-items: center;
+  padding: 8px 16px;
+  background-color: #3b82f6;
+  color: #ffffff;
+}
+
+.btn--view-details:hover {
+  background-color: #316cd1;
+}
+
+.btn--icon.btn--favorite.active {
+  background-color: #ef4444;
+  border-color: #ef4444;
+  color: #ffffff;
+}
+
+/* --- FOOTER DAN PAGINATION --- */
+
+.content-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* PERBAIKAN: Tambahkan padding 32px di kiri dan kanan */
+  padding: 24px 32px;
+  border-top: 1px solid #e5e7eb;
+  margin-top: 24px;
+}
+
+.pagination-info {
+  font-size: 16px;
+  color: #4b5563;
+}
+
+.pagination-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn--page {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffffff;
+  border: 1px solid #e5e7eb;
+  color: #4b5563;
+  font-weight: 500;
+}
+
+.btn--page.active {
+  background-color: #3b82f6;
+  border-color: #3b82f6;
+  color: #ffffff;
+}
+
+.btn--page i {
+  font-size: 12px;
+}
+
+.pagination-dots {
+  color: #9ca3af;
+  font-size: 20px;
+  line-height: 1;
+}

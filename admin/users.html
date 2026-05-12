@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="../assets/images/Logo-Tunotes.png">
+    <meta name="description" content="TuNotes — platform catatan kuliah cerdas untuk mahasiswa Indonesia.">
+  <title>Manajemen Pengguna — TuNotes Admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+</head>
+<body data-page="users" data-title="Pengguna">
+  <div class="app">
+    <aside class="sidebar" id="sidebar"></aside>
+    <div class="main">
+      <header class="header" id="header"></header>
+      <div class="content">
+        <div class="page-head">
+          <div>
+            <h1 class="page-title">Manajemen Pengguna</h1>
+            <p class="page-desc">Kelola data profil, role, status aktivasi, dan log aktivitas mahasiswa</p>
+          </div>
+          <button class="btn btn-primary" id="addUserBtn"><span id="plusIcon"></span> Tambah Pengguna</button>
+        </div>
+
+        <div class="stats-grid" id="userStats"></div>
+
+        <div class="filter-bar">
+          <div class="filter-search">
+            <span id="searchIcon"></span>
+            <input id="userSearch" type="search" placeholder="Cari nama atau email..." aria-label="Cari pengguna" />
+          </div>
+          <div class="filter-tabs" role="tablist">
+            <button class="filter-tab active" data-filter="all">Semua</button>
+            <button class="filter-tab" data-filter="active">Aktif</button>
+            <button class="filter-tab" data-filter="suspended">Ditangguhkan</button>
+            <button class="filter-tab" data-filter="inactive">Tidak Aktif</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="table-wrap">
+            <table>
+              <thead><tr>
+                <th>Pengguna</th><th>Email</th><th>Role</th><th>Status</th>
+                <th>Catatan</th><th>Terakhir Aktif</th><th>Aksi</th>
+              </tr></thead>
+              <tbody id="userTable"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="../assets/js/data.js"></script>
+  <script src="../assets/js/app.js"></script>
+  <script>
+    const STATUS_MAP = {
+      active:    { label: 'Aktif',         cls: 'badge-success' },
+      suspended: { label: 'Ditangguhkan',  cls: 'badge-warning' },
+      inactive:  { label: 'Tidak Aktif',   cls: 'badge-danger' },
+    };
+    const ROLE_MAP = {
+      user:        { label: 'User',        cls: 'badge-info' },
+      admin:       { label: 'Admin',       cls: 'badge-purple' },
+      super_admin: { label: 'Super Admin', cls: 'badge-danger' },
+    };
+
+    const state = { filter: 'all', search: '' };
+    let users = [...DATA.users];
+    let nextId = Math.max(...users.map(u => u.id)) + 1;
+
+    function renderStats() {
+      const total = users.length;
+      const active = users.filter(u => u.status==='active').length;
+      const susp   = users.filter(u => u.status==='suspended').length;
+      const inact  = users.filter(u => u.status==='inactive').length;
+      document.getElementById('userStats').innerHTML = `
+        <div class="stat-card"><div class="stat-icon blue">${ICONS.users}</div>
+          <div><div class="stat-value">${total.toLocaleString('id-ID')}</div>
+          <div class="stat-label">Total Pengguna</div></div></div>
+        <div class="stat-card"><div class="stat-icon green">${ICONS.check}</div>
+          <div><div class="stat-value">${active.toLocaleString('id-ID')}</div>
+          <div class="stat-label">Aktif</div></div></div>
+        <div class="stat-card"><div class="stat-icon yellow">${ICONS.clock}</div>
+          <div><div class="stat-value">${susp}</div>
+          <div class="stat-label">Ditangguhkan</div></div></div>
+        <div class="stat-card"><div class="stat-icon red">${ICONS.alertTriangle}</div>
+          <div><div class="stat-value">${inact}</div>
+          <div class="stat-label">Tidak Aktif</div></div></div>
+      `;
+    }
+
+    function renderUsers() {
+      const tbody = document.getElementById('userTable');
+      const term = state.search.toLowerCase();
+      const filtered = users.filter(u => {
+        const mf = state.filter === 'all' || u.status === state.filter;
+        const ms = u.name.toLowerCase().includes(term) || u.email.toLowerCase().includes(term);
+        return mf && ms;
+      });
+      if (!filtered.length) {
+        tbody.innerHTML = `<tr><td colspan="7" style="text-align:center;color:var(--text-muted);padding:32px">Tidak ada pengguna yang cocok.</td></tr>`;
+        return;
+      }
+      tbody.innerHTML = filtered.map(u => {
+        const role = ROLE_MAP[u.role] || ROLE_MAP.user;
+        return `
+        <tr data-id="${u.id}">
+          <td><div class="flex items-center gap-3">
+            <div class="avatar ${avatarClass(u.name)}">${initials(u.name)}</div>
+            <span style="font-weight:500">${escapeHtml(u.name)}</span>
+          </div></td>
+          <td>${escapeHtml(u.email)}</td>
+          <td><span class="badge ${role.cls}">${role.label}</span></td>
+          <td><span class="badge ${STATUS_MAP[u.status].cls}">${STATUS_MAP[u.status].label}</span></td>
+          <td>${u.notes}</td>
+          <td class="text-muted text-sm">${u.lastActive}</td>
+          <td>
+            <div class="flex gap-2">
+              <button class="btn-icon" data-act="view"   aria-label="Lihat detail">${ICONS.eye}</button>
+              <button class="btn-icon" data-act="edit"   aria-label="Edit pengguna">${ICONS.edit}</button>
+              <button class="btn-icon danger" data-act="delete" aria-label="Hapus pengguna">${ICONS.trash}</button>
+            </div>
+          </td>
+        </tr>`;
+      }).join('');
+    }
+
+    function userFormHtml(u) {
+      const r = u?.role || 'user';
+      const s = u?.status || 'active';
+      return `
+        <form id="userForm" autocomplete="off">
+          <div class="form-group">
+            <label class="form-label" for="uf-name">Nama Lengkap</label>
+            <input class="form-input" id="uf-name" value="${escapeHtml(u?.name || '')}" placeholder="cth. Budi Santoso" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="uf-email">Email</label>
+            <input class="form-input" id="uf-email" type="email" value="${escapeHtml(u?.email || '')}" placeholder="cth. budi@tunotes.id" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="password">Password</label>
+            <input class="form-input" id="password" type="password" value="${escapeHtml(u?.password || '')}" placeholder="Masukkan Password" required />
+          </div>
+          <div class="grid-2">
+            <div class="form-group">
+              <label class="form-label" for="uf-role">Role</label>
+              <select class="form-select" id="uf-role">
+                <option value="user"        ${r==='user'?'selected':''}>User</option>
+                <option value="admin"       ${r==='admin'?'selected':''}>Admin</option>
+                <option value="super_admin" ${r==='super_admin'?'selected':''}>Super Admin</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="uf-status">Status</label>
+              <select class="form-select" id="uf-status">
+                <option value="active"    ${s==='active'?'selected':''}>Aktif</option>
+                <option value="suspended" ${s==='suspended'?'selected':''}>Ditangguhkan</option>
+                <option value="inactive"  ${s==='inactive'?'selected':''}>Tidak Aktif</option>
+              </select>
+            </div>
+          </div>
+        </form>`;
+    }
+
+    function openCreateModal() {
+      openModal({
+        title: 'Tambah Pengguna Baru',
+        body: userFormHtml(),
+        footer: `
+          <button class="btn btn-outline" onclick="closeModal()">Batal</button>
+          <button class="btn btn-primary" id="saveNewUser">Simpan</button>`
+      });
+      document.getElementById('saveNewUser').addEventListener('click', () => {
+        const name  = document.getElementById('uf-name').value.trim();
+        const email = document.getElementById('uf-email').value.trim();
+        const role  = document.getElementById('uf-role').value;
+        const status= document.getElementById('uf-status').value;
+        if (!name || !email) { showToast('Nama & email wajib diisi'); return; }
+        users.unshift({ id: nextId++, name, email, role, status, notes: 0, lastActive: 'Baru saja' });
+        closeModal(); renderStats(); renderUsers();
+        showToast(`Pengguna ${name} ditambahkan sebagai ${ROLE_MAP[role].label}`);
+      });
+    }
+
+    function handleAction(act, id) {
+      const u = users.find(x => x.id === id);
+      if (!u) return;
+      if (act === 'view') {
+        const role = ROLE_MAP[u.role] || ROLE_MAP.user;
+        openModal({
+          title: 'Detail Pengguna',
+          body: `
+            <div class="flex items-center gap-3" style="margin-bottom:16px">
+              <div class="avatar ${avatarClass(u.name)}" style="width:56px;height:56px;font-size:18px">${initials(u.name)}</div>
+              <div>
+                <div style="font-weight:600;font-size:16px">${escapeHtml(u.name)}</div>
+                <div class="text-sm text-muted">${escapeHtml(u.email)}</div>
+              </div>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;font-size:13px">
+              <div><div class="text-xs text-muted">Role</div><span class="badge ${role.cls}">${role.label}</span></div>
+              <div><div class="text-xs text-muted">Status</div><span class="badge ${STATUS_MAP[u.status].cls}">${STATUS_MAP[u.status].label}</span></div>
+              <div><div class="text-xs text-muted">Total Catatan</div><div style="font-weight:600">${u.notes}</div></div>
+              <div><div class="text-xs text-muted">Terakhir Aktif</div><div>${u.lastActive}</div></div>
+              <div><div class="text-xs text-muted">ID</div><div>#${u.id.toString().padStart(5,'0')}</div></div>
+            </div>`,
+          footer: `<button class="btn btn-outline" onclick="closeModal()">Tutup</button>`
+        });
+      } else if (act === 'edit') {
+        openModal({
+          title: 'Edit Pengguna',
+          body: userFormHtml(u),
+          footer: `
+            <button class="btn btn-outline" onclick="closeModal()">Batal</button>
+            <button class="btn btn-primary" id="saveEditUser">Simpan</button>`
+        });
+        document.getElementById('saveEditUser').addEventListener('click', () => {
+          u.name   = document.getElementById('uf-name').value.trim();
+          u.email  = document.getElementById('uf-email').value.trim();
+          u.role   = document.getElementById('uf-role').value;
+          u.status = document.getElementById('uf-status').value;
+          closeModal(); renderStats(); renderUsers();
+          showToast('Data pengguna diperbarui');
+        });
+      } else if (act === 'delete') {
+        if (confirm(`Hapus pengguna "${u.name}"? Tindakan ini tidak dapat dibatalkan.`)) {
+          users = users.filter(x => x.id !== id);
+          renderStats(); renderUsers();
+          showToast(`${u.name} dihapus`);
+        }
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('searchIcon').innerHTML = ICONS.search;
+      document.getElementById('plusIcon').innerHTML = ICONS.plus;
+      renderStats();
+      renderUsers();
+
+      document.getElementById('addUserBtn').addEventListener('click', openCreateModal);
+      document.getElementById('userSearch').addEventListener('input', e => {
+        state.search = e.target.value; renderUsers();
+      });
+      document.querySelectorAll('.filter-tab').forEach(tab => {
+        tab.addEventListener('click', () => {
+          document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+          tab.classList.add('active');
+          state.filter = tab.dataset.filter;
+          renderUsers();
+        });
+      });
+      document.getElementById('userTable').addEventListener('click', e => {
+        const btn = e.target.closest('button[data-act]');
+        if (!btn) return;
+        const tr = btn.closest('tr');
+        handleAction(btn.dataset.act, Number(tr.dataset.id));
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="../assets/images/Logo-Tunotes.png">
+    <meta name="description" content="TuNotes — platform catatan kuliah cerdas untuk mahasiswa Indonesia.">
+    <title>TuNotes - Profile Settings</title>
+    <script src="https://unpkg.com/akar-icons-fonts"></script>
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-regular-rounded/css/uicons-regular-rounded.css'>
+    <link rel="stylesheet" href="../assets/css/Profil.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+    <aside class="sidebar">
+        <a href="Dashboard.html" class="sidebar-logo">
+            <img src="../assets/images/Logo-Tunotes.png" alt="TuNotes Icon">
+        </a>
+        <nav class="sidebar-menu">
+             <a href="Dashboard.html"><i class="ai-home-alt1"></i> Home</a>
+             <a href="MyNotes.html"><i class="ai-file"></i> My Notes</a>
+             <a href="MyFavorites.html"><i class="ai-heart"></i> Favorit</a>
+             <a href="UploadNotes.html"><i class="ai-cloud-upload"></i>Upload Notes</a>
+             <a href="NotesAI.html"><i class="fi fi-rr-robot"></i> Notes AI</a>
+             <a href="NotesRead.html"><i class="ai-folder"></i> Notes Read</a>
+            <a href="StudyList.html"><i class="ai-schedule"></i> Study List</a>
+            <a href="Profil.html" class="active"><i class="ai-person"></i> Profil</a>
+        </nav>
+        <div class="sidebar-footer">
+            <a href="#" id="logoutLink" class="logout-link"><i class="ai-sign-out"></i>
+                <span>Logout</span>
+            </a>
+        </div>
+    </aside>
+
+    <main class="main-container">
+        <header class="top-header">
+            <div class="header-left">
+                <h1>Profile Settings</h1>
+                <p>Manage your account information and preferences</p>
+            </div>
+            <div class="header-right">
+                <div class="header-icons">
+                    <div class="icon-badge">
+                        <i class="ai-bell"></i>
+                        <span class="badge" data-notif-badge>3</span>
+                    </div>
+                    <div class="icon-badge">
+                        <i class="ai-envelope"></i>
+                        <span class="badge" data-message-badge>2</span>
+                    </div>
+                </div>
+                <div class="user-dropdown">
+                    <img src="../assets/images/user1.png" alt="User" data-user-avatar>
+                    <span data-user-name>…</span>
+                    <i class="ai-chevron-down"></i>
+                </div>
+            </div>
+        </header>
+
+        <div class="content-body">
+            <div class="profile-section">
+                <div class="card photo-card">
+                    <div class="avatar-container">
+                        <img src="../assets/images/user1.png" alt="Profile">
+                        <button class="cam-btn" type="button"><i class="ai-camera"></i></button>
+                    </div>
+                    <h2>Profile Photo</h2>
+                    <p>Upload a new photo to personalize your profile</p>
+                    <a href="#" class="change-photo-link">Change Photo</a>
+                </div>
+
+                <div class="card info-card">
+                    <div class="card-title-row">
+                        <h2>Personal Information</h2>
+                        <i class="fas fa-pen text-blue"></i>
+                    </div>
+                    <form class="profile-form" novalidate>
+                        <div class="form-row">
+                            <div class="input-group">
+                                <label for="profileName">Nama Lengkap</label>
+                                <input type="text" id="profileName" name="name" required maxlength="100">
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <label for="profileUsername">Username</label>
+                            <input type="text" id="profileUsername" name="username" readonly
+                                   style="background:#f3f4f6;color:#6b7280;cursor:not-allowed;">
+                        </div>
+                        <div class="input-group">
+                            <label for="profileEmail">Email Address</label>
+                            <input type="email" id="profileEmail" name="email" required maxlength="150">
+                        </div>
+                        <div class="input-group">
+                            <label for="profilePassword">Password Baru
+                                <span style="color:#9ca3af;font-weight:400;font-size:0.8rem;">(kosongkan kalau tidak ganti)</span>
+                            </label>
+                            <input type="password" id="profilePassword" name="new_password" minlength="8"
+                                   placeholder="Min 8 karakter">
+                        </div>
+                        <div class="input-group">
+                            <label for="profileBio">Bio</label>
+                            <textarea id="profileBio" rows="3" disabled
+                                      style="background:#f9fafb;color:#9ca3af;"></textarea>
+                        </div>
+                        <button type="submit" class="save-btn">
+                            <i class="ai-save"></i> Save Changes
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <h3 class="stats-title">Account Statistics</h3>
+            <div class="stats-grid">
+                <div class="stat-card blue">
+                    <div class="stat-text">
+                        <span>Total Notes</span>
+                        <strong id="statTotalNotes">0</strong>
+                    </div>
+                    <div class="stat-icon-bg"><i class="ai-file"></i></div>
+                </div>
+                <div class="stat-card green">
+                    <div class="stat-text">
+                        <span>Favorites</span>
+                        <strong id="statFavorites">0</strong>
+                    </div>
+                    <div class="stat-icon-bg"><i class="ai-heart"></i></div>
+                </div>
+                <div class="stat-card purple">
+                    <div class="stat-text">
+                        <span>Downloads</span>
+                        <strong id="statDownloads">0</strong>
+                    </div>
+                    <div class="stat-icon-bg"><i class="ai-download"></i></div>
+                </div>
+                <div class="stat-card orange">
+                    <div class="stat-text">
+                        <span>Member Since</span>
+                        <strong id="statMemberSince">—</strong>
+                    </div>
+                    <div class="stat-icon-bg"><i class="ai-calendar"></i></div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="../assets/js/api.js"></script>
+    <script src="../assets/js/modal.js"></script>
+    <script src="../assets/js/user-header.js"></script>
+    <script src="../assets/js/profile.js"></script>
+    <script>
+    document.getElementById('logoutLink').addEventListener('click', async function (e) {
+        e.preventDefault();
+        await api.delete('../api/auth.php', { autoRedirect: false });
+        window.location.href = 'LandingPage.html';
+    });
+    </script>
+</body>
+</html>

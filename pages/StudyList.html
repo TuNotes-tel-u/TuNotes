@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="../assets/images/Logo-Tunotes.png">
+    <meta name="description" content="TuNotes — platform catatan kuliah cerdas untuk mahasiswa Indonesia.">
+    <meta charset="UTF-8">
+    <title>TuNotes | Study List</title>
+    <link rel="stylesheet" href="../assets/css/StudyList.css">
+    <script src="https://unpkg.com/akar-icons-fonts"></script>
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-regular-rounded/css/uicons-regular-rounded.css'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+    <div class="app-container">
+
+        <aside class="sidebar">
+            <header class="sidebar__header">
+                <a href="Dashboard.html" class="sidebar__logo">
+                  <img src="../assets/images/Logo-Tunotes.png" alt="TuNotes Icon">
+                </a>
+            </header>
+
+            <nav class="sidebar__nav">
+                <ul class="nav-list">
+                    <a href="Dashboard.html" class="nav-link"><i class="ai-home-alt1"></i> Home</a>
+                    <a href="MyNotes.html" class="nav-link"><i class="ai-file"></i> My Notes</a>
+                    <a href="MyFavorites.html" class="nav-link"><i class="ai-heart"></i> Favorit</a>
+                    <a href="UploadNotes.html" class="nav-link"><i class="ai-cloud-upload"></i>Upload Notes</a>
+                    <a href="NotesAI.html" class="nav-link"><i class="fi fi-rr-robot"></i> Notes AI</a>
+                    <a href="NotesRead.html" class="nav-link"><i class="ai-folder"></i> Notes Read</a>
+                    <a href="StudyList.html" class="nav-link nav-link active"><i class="ai-schedule"></i> Study List</a>
+                    <a href="Profil.html" class="nav-link"><i class="ai-person"></i> Profil</a>
+                </ul>
+            </nav>
+            <div class="logout">
+              <a href="LandingPage.html" class="nav-logout"><i class="ai-sign-out"></i>
+                <span>Logout</span>
+              </a>
+            </div>     
+        </aside>
+
+        <main class="main-content">
+
+            <header class="content-header">
+                <div class="content-header__info">
+                    <h1>Study List – Rencana Belajar Semesteran</h1>
+                    <p>Kelola daftar mata kuliah dan hubungkan dengan catatan kuliahmu.</p>
+                </div>
+                
+                <div class="content-header__actions">
+                    <div class="select-dropdown">
+                        <span>2024 Ganjil</span>
+                        <i class="ai-chevron-down-small"></i>
+                    </div>
+                    <button class="btn btn--primary" id="btnAddSemester">
+                        <span>+ Tambah Semester Baru</span>
+                    </button>
+                </div>
+            </header>
+
+            <div id="semestersContainer"></div>
+
+            <section class="summary-section">
+                <h2 class="summary-section-title">Ringkasan Study Progress</h2>
+                <div class="summary-grid">
+
+                    <div class="summary-card summary-card--blue">
+                        <div class="summary-icon"><i class="fa-solid fa-book"></i></div>
+                        <div class="summary-number" id="statTotalCourses">0</div>
+                        <div class="summary-label">Total Mata Kuliah</div>
+                    </div>
+
+                    <div class="summary-card summary-card--green">
+                        <div class="summary-icon"><i class="fa-solid fa-file-pen"></i></div>
+                        <div class="summary-number" id="statTotalNotes">0</div>
+                        <div class="summary-label">Total Catatan</div>
+                    </div>
+
+                    <div class="summary-card summary-card--purple">
+                        <div class="summary-icon"><i class="fa-solid fa-calendar-days"></i></div>
+                        <div class="summary-number" id="statActiveSemesters">0</div>
+                        <div class="summary-label">Semester Aktif</div>
+                    </div>
+
+                </div>
+            </section>
+        </main>
+    </div>
+    <script src="../assets/js/api.js"></script>
+    <script src="../assets/js/modal.js"></script>
+    <script src="../assets/js/study-list.js"></script>
+</body>
+</html>

@@ -1,0 +1,327 @@
+/* 1. RESET & DASAR */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Inter", sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #f8fafc;
+}
+
+.main-container {
+  max-width: 1200px;
+  margin: 32px auto;
+  padding: 0 24px;
+}
+
+/* 2. HEADER */
+.page-header {
+  width: 100%;
+  /background-color: #ffffff;
+  padding: 20px 0;
+  /border-bottom: 1px solid #e5e7eb;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  /position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.header-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.back-button {
+  color: #1f2937;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s;
+}
+
+.back-button:hover {
+  transform: translateX(-3px);
+}
+
+.page-title {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+/* 3. TOOLBAR / CONTROLS */
+.controls-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.filters-left {
+  display: flex;
+  gap: 12px;
+}
+
+.dropdown {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: white;
+  padding: 10px 16px;
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
+  font-size: 14px;
+  font-weight: 500;
+  color: #4b5563;
+  cursor: pointer;
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 0 16px;
+  width: 320px;
+}
+
+.search-box input {
+  border: none;
+  outline: none;
+  padding: 12px 8px;
+  width: 100%;
+  font-size: 14px;
+}
+
+.btn-create {
+  text-decoration: none;
+  background-color: #2563eb; /* Biru Solid */
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.2);
+  transition: background 0.2s;
+}
+
+.btn-create:hover {
+  background-color: #1e40af;
+}
+
+/* 4. TABEL (Bagian Paling Penting) */
+.table-card {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+}
+
+.notes-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+/* Header Berwarna-warni (Pastel) */
+.notes-table th {
+  padding: 16px 24px;
+  font-size: 13px;
+  font-weight: 600;
+  text-align: left;
+  color: #374151;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.th-doc {
+  background-color: #e0f2fe;
+} /* Biru Muda */
+.th-lecturer {
+  background-color: #dcfce7;
+} /* Hijau Muda */
+.th-date {
+  background-color: #f3e8ff;
+} /* Ungu Muda */
+.th-actions {
+  background-color: #ffe4e6;
+} /* Pink/Merah Muda */
+
+.notes-table td {
+  padding: 18px 24px;
+  border-bottom: 1px solid #f3f4f6;
+  vertical-align: middle;
+}
+
+/* Info Dokumen */
+.doc-info {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.file-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.file-icon svg {
+  width: 22px;
+  height: 22px;
+}
+
+.icon-pdf {
+  background: #dbeafe;
+  color: #2563eb;
+}
+.icon-word {
+  background: #ffedd5;
+  color: #ea580c;
+}
+.icon-excel {
+  background: #dcfce7;
+  color: #16a34a;
+}
+.icon-ppt {
+  background: #f3e8ff;
+  color: #9333ea;
+}
+
+.doc-name {
+  font-weight: 600;
+  font-size: 14px;
+  color: #111827;
+}
+
+.doc-file {
+  font-size: 12px;
+  color: #6b7280;
+  margin-top: 2px;
+}
+
+/* Lecturer */
+.lecturer-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.lecturer-name {
+  font-size: 14px;
+  color: #374151;
+  font-weight: 500;
+}
+
+.text-date {
+  font-size: 14px;
+  color: #6b7280;
+}
+
+/* Action Buttons (Flat Style) */
+.action-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.btn-action {
+  text-decoration: none;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-update {
+  background-color: #eff6ff;
+  color: #2563eb;
+}
+.btn-delete {
+  background-color: #fff1f2;
+  color: #e11d48;
+}
+.btn-download {
+  background-color: #f0fdf4;
+  color: #16a34a;
+}
+
+.btn-action:hover {
+  filter: brightness(0.95);
+  transform: translateY(-1px);
+}
+
+/* 5. PAGINATION */
+.pagination-wrapper {
+  margin-top: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.showing-text {
+  font-size: 14px;
+  color: #6b7280;
+}
+
+.pagination-controls {
+  display: flex;
+  gap: 6px;
+}
+
+.page-btn {
+  min-width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  background: white;
+  font-size: 14px;
+  font-weight: 500;
+  color: #374151;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.page-btn.active {
+  background-color: #2563eb;
+  color: white;
+  border-color: #2563eb;
+}
+
+.page-btn:hover:not(.active) {
+  background-color: #f9fafb;
+}

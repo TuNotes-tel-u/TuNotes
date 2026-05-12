@@ -1,0 +1,333 @@
+/* --- 1. RESET DASAR --- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Inter", Helvetica, Arial, sans-serif;
+  background-color: #f8fafc; /* Abu-abu sangat muda */
+  color: #111827; /* Hitam pekat */
+  line-height: 1.5;
+}
+
+/* --- 2. HEADER STYLE (Sticky & Full Width) --- */
+.app-header {
+  background: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
+  padding: 20px 32px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+.header-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.back-button {
+  color: #111827;
+  font-size: 1.2rem;
+  text-decoration: none;
+  transition: transform 0.2s;
+}
+
+.back-button:hover {
+  transform: translateX(-4px);
+}
+
+.header-title {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.notif-icons {
+  display: flex;
+  gap: 16px;
+}
+
+.icon-btn {
+  background: none;
+  border: none;
+  font-size: 18px;
+  color: #6b7280;
+  position: relative;
+  cursor: pointer;
+}
+
+.badge {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: #ef4444;
+  color: white;
+  font-size: 10px;
+  padding: 2px 6px;
+  border-radius: 10px;
+}
+
+.user-profile {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* --- 3. MAIN CONTENT LAYOUT --- */
+.main-content {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+.page-intro {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.page-intro .title {
+  font-family: "Poppins", sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.page-intro .subtitle {
+  color: #6b7280;
+  font-size: 18px;
+}
+
+/* --- 4. FORM CARD --- */
+.form-card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 40px;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.form-group {
+  margin-bottom: 24px;
+}
+
+.form-group label {
+  display: block;
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  color: #374151;
+  margin-bottom: 8px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 15px;
+  font-family: "Inter", sans-serif;
+  transition: border-color 0.2s;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+/* --- 5. TAGS SYSTEM --- */
+.tag-input-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 8px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  background: white;
+}
+
+.tag-pill {
+  background: #3b82f6;
+  color: white;
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.tag-pill i {
+  cursor: pointer;
+  font-size: 11px;
+}
+
+.input-tag-ghost {
+  border: none !important;
+  flex: 1;
+  min-width: 120px;
+  padding: 4px !important;
+}
+
+/* --- 6. UPLOAD ZONE --- */
+.upload-zone {
+  border: 2px dashed #d1d5db;
+  border-radius: 12px;
+  padding: 32px;
+  text-align: center;
+  background: #fafafa;
+}
+
+.cloud-icon {
+  font-size: 40px;
+  color: #9ca3af;
+  margin-bottom: 12px;
+}
+
+.upload-text {
+  font-weight: 600;
+  color: #374151;
+}
+
+.upload-hint {
+  font-size: 12px;
+  color: #6b7280;
+  margin-bottom: 20px;
+}
+
+.file-preview {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f3f4f6;
+  padding: 12px 16px;
+  border-radius: 8px;
+  margin-bottom: 16px;
+}
+
+.file-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.pdf-icon {
+  color: #ef4444;
+  font-size: 20px;
+}
+
+.btn-choose {
+  background: #3b82f6;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+/* --- 7. BUTTON ACTIONS --- */
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 40px;
+  padding-top: 24px;
+  border-top: 1px solid #e5e7eb;
+}
+
+.btn-cancel {
+  background: #f3f4f6;
+  color: #374151;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-save {
+  background: #22c55e;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-save:hover {
+  background: #16a34a;
+}
+
+/* --- 8. TIPS BOX --- */
+.tips-container {
+  margin-top: 32px;
+  background: #eff6ff;
+  border-radius: 12px;
+  padding: 24px;
+}
+
+.tips-content {
+  display: flex;
+  gap: 16px;
+}
+
+.tips-icon {
+  width: 32px;
+  height: 32px;
+  background: #dbeafe;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #1e40af;
+}
+
+.tips-text h3 {
+  font-size: 16px;
+  color: #1e3a8a;
+  margin-bottom: 8px;
+}
+
+.tips-text ul {
+  list-style: none;
+  color: #1e40af;
+  font-size: 14px;
+}
+
+.tips-text li::before {
+  content: "•";
+  margin-right: 8px;
+}

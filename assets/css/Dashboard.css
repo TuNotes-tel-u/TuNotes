@@ -1,0 +1,470 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Inter", Helvetica, sans-serif;
+  background-color: #f9fafb; /* Latar belakang abu-abu muda */
+  color: #111827;
+  height: 100vh;
+  overflow: hidden;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  grid-template-columns: auto 1fr auto;
+  grid-template-areas: "header header header" "nav    main   aside";
+}
+
+/* -------------------------------------
+   1. TOP HEADER (Header Atas)
+---------------------------------------- */
+
+/* Menempatkan header di area 'header' grid */
+.top-header {
+  grid-area: header;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 24px;
+  background-color: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
+  height: 81px; /* Tinggi tetap dari desain */
+}
+
+.top-header__logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  font-size: 20px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.top-header__logo img {
+  width: 150px;
+  height: auto;
+}
+
+/* Form pencarian  */
+.search-bar {
+  position: relative;
+  width: 384px; /* Lebar dari desain */
+}
+
+.search-bar .ai-search {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #adaebc;
+}
+
+.search-bar input {
+  width: 100%;
+  height: 40px;
+  border: none;
+  border-radius: 8px;
+  background-color: #f3f4f6;
+  padding-left: 40px;
+  font-size: 16px;
+}
+
+/* Aksi pengguna di kanan */
+.user-actions {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.action-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  color: #4b5563;
+}
+
+.action-btn .ai-bell,
+.action-btn .ai-envelope {
+  font-size: 24px;
+}
+
+.badge {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background-color: #ef4444;
+  color: white;
+  font-size: 12px;
+  width: 20px;
+  height: 20px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+}
+
+.user-menu {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.user-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* -------------------------------------
+   2. SIDEBAR NAVIGASI KIRI
+---------------------------------------- */
+
+/* Menempatkan nav di area 'nav' grid */
+.sidebar-nav {
+  grid-area: nav;
+  width: 256px; /* Lebar tetap dari desain */
+  background-color: #ffffff;
+  border-right: 1px solid #e5e7eb;
+  padding: 24px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: auto;
+}
+
+.main-nav ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 12px;
+  border-radius: 8px;
+  text-decoration: none;
+  color: #4b5563;
+  font-size: 16px;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.nav-link:hover {
+  background-color: #f3f4f6;
+}
+
+.nav-link.active {
+  background-color: #3b82f61a;
+  color: #3b82f6;
+}
+
+.nav-link i {
+  font-size: 16px;
+}
+
+.nav-logout {
+  text-decoration: none;
+  cursor: pointer;
+  margin-top: 10px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  gap: 16px;
+  padding: 12px;
+  width: 100%;
+  color: #dc2626;
+}
+
+.nav-logout:hover {
+  background-color: #fee2e2; /* Latar merah muda */
+}
+
+/* -------------------------------------
+   3. KONTEN UTAMA (Tengah)
+---------------------------------------- */
+
+/* Menempatkan main di area 'main' grid */
+.main-content {
+  grid-area: main;
+  padding: 32px;
+  overflow-y: auto; /* Memungkinkan konten di-scroll */
+}
+
+.main-content-header {
+  position: sticky;
+  top: 0;
+  background-color: #f9fafb;
+  z-index: 5;
+}
+
+.welcome-banner {
+  padding: 32px;
+  border-radius: 16px;
+  background: linear-gradient(90deg, #3b82f6 0%, #2563eb 100%);
+  color: white;
+}
+
+.welcome-banner h1 {
+  font-size: 30px;
+  font-weight: 700;
+  color: white;
+}
+
+.welcome-banner p {
+  font-size: 18px;
+  color: #dbeafe;
+  opacity: 0.9;
+}
+
+/* Navigasi Tab */
+.content-tabs {
+  display: flex;
+  gap: 32px;
+  border-bottom: 1px solid #e5e7eb;
+  margin-top: 32px;
+  padding-bottom: 1px;
+}
+
+.tab-btn {
+  background: none;
+  border: none;
+  padding: 0 4px 16px 4px; /* Padding untuk garis bawah */
+  font-size: 16px;
+  font-weight: 500;
+  color: #4b5563;
+  cursor: pointer;
+}
+
+.tab-btn.active {
+  color: #3b82f6;
+  border-bottom: 2px solid #3b82f6;
+}
+
+/* Grid Kartu Catatan */
+.notes-grid {
+  display: grid;
+  /* Grid 2 kolom, fleksibel */
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  margin-top: 32px;
+}
+
+/* -------------------------------------
+   4. KOMPONEN KARTU CATATAN
+---------------------------------------- */
+
+.note-card {
+  background-color: #ffffff;
+  border: 1px solid #f3f4f6;
+  border-radius: 12px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.card-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 8px;
+  display: grid;
+  place-items: center;
+  font-size: 24px;
+  color: #3b82f6;
+}
+
+/* -------------------------------------
+   4.1. Pewarnaan Ikon Otomatis (Menggunakan :nth-child)
+---------------------------------------- */
+
+/* Catatan: 
+   .note-card adalah parent yang dihitung.
+   .card-icon adalah child yang diwarnai.
+*/
+
+/* Kartu 1 (Contoh: Kalkulus) */
+.notes-grid .note-card:nth-child(4n + 1) .card-icon {
+  background-color: #dbeafe; /* Biru Muda (dbeafe) */
+}
+.notes-grid .note-card:nth-child(4n + 1) .card-icon i {
+  color: #3b82f6;
+}
+
+/* Kartu 2 (Contoh: Fisika Kuantum) */
+.notes-grid .note-card:nth-child(4n + 2) .card-icon {
+  background-color: #f3e8ff; /* Ungu Muda (f3e8ff) */
+}
+.notes-grid .note-card:nth-child(4n + 2) .card-icon i {
+  color: #8b5cf6;
+}
+
+/* Kartu 3 (Contoh: Algoritma) */
+.notes-grid .note-card:nth-child(4n + 3) .card-icon {
+  background-color: #dcfce7; /* Hijau Muda (dcfce7) */
+}
+.notes-grid .note-card:nth-child(4n + 3) .card-icon i {
+  color: #10b981;
+}
+
+/* Kartu 4 (Contoh: Manajemen Keuangan) */
+.notes-grid .note-card:nth-child(4n + 4) .card-icon {
+  background-color: #fee2e2; /* Merah Muda (fee2e2) */
+}
+.notes-grid .note-card:nth-child(4n + 4) .card-icon i {
+  color: #ef4444;
+}
+
+/* Menggunakan '4n + x' memastikan pola 4 warna ini berulang terus menerus
+   (1, 2, 3, 4, 5, 6, 7, 8, ...) tanpa perlu menulis sampai tak terbatas.
+*/
+
+.like-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #9ca3af; /* Abu-abu */
+  font-size: 20px;
+}
+
+.like-btn.active {
+  color: #ef4444; /* Merah */
+}
+
+.card-body {
+  margin-top: 16px;
+}
+
+.card-body a {
+  text-decoration: none;
+}
+
+.card-body h3 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 8px;
+}
+
+.card-body p {
+  font-size: 14px;
+  color: #4b5563;
+}
+
+.card-footer {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 12px;
+  font-size: 14px;
+  color: #6b7280;
+}
+
+.meta-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.meta-item .ai-star-fill {
+  color: #f59e0b; /* Kuning */
+}
+
+/* Memisahkan tanggal ke kanan */
+.meta-date {
+  margin-left: auto;
+}
+
+/* Badge (PDF, PPT, DOC) */
+[class^="badge-"] {
+  font-size: 12px;
+  font-weight: 500;
+  padding: 4px 10px;
+  border-radius: 9999px;
+}
+
+.badge-pdf {
+  background-color: #dcfce7;
+  color: #15803d;
+}
+.badge-ppt {
+  background-color: #dbeafe;
+  color: #1d4ed8;
+}
+.badge-doc {
+  background-color: #ffedd5;
+  color: #c2410c;
+}
+
+/* -------------------------------------
+   5. SIDEBAR INFO KANAN
+---------------------------------------- */
+
+/* Menempatkan aside di area 'aside' grid */
+.sidebar-right {
+  grid-area: aside;
+  width: 271px; /* Lebar tetap dari desain */
+  padding: 32px 24px;
+  overflow-y: auto;
+}
+
+.sidebar-right h3 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 16px;
+}
+
+.progress-card {
+  border-radius: 8px;
+  padding: 16px;
+  background: linear-gradient(90deg, rgba(59, 130, 246, 0.1) 0%, #dbeafe 100%);
+}
+
+.progress-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  font-weight: 500;
+  color: #374151;
+}
+
+.progress-header span:last-child {
+  font-weight: 700;
+  color: #3b82f6;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 8px;
+  background-color: #ffffff;
+  border-radius: 9999px;
+  margin: 8px 0;
+  overflow: hidden; /* Memastikan fill tetap di dalam */
+}
+
+.progress-fill {
+  height: 100%;
+  background-color: #3b82f6;
+  border-radius: 9999px;
+}
+
+.progress-card p {
+  font-size: 12px;
+  line-height: 16px;
+  color: #4b5563;
+}

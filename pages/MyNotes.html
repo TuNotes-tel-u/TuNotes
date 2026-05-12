@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="../assets/images/Logo-Tunotes.png">
+    <meta name="description" content="TuNotes — platform catatan kuliah cerdas untuk mahasiswa Indonesia.">
+    <title>TuNotes - My Notes</title>
+    <link rel="stylesheet" href="../assets/css/Mynotes.css">
+    <!-- Lucide Icons (Menggunakan CDN untuk ikon) -->
+    <script src="https://unpkg.com/akar-icons-fonts"></script>
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-regular-rounded/css/uicons-regular-rounded.css'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+<div class="app-container">
+    
+    <aside class="sidebar">
+        <div class="sidebar__header">
+           <a href="Dashboard.html" class="top-header__logo">
+             <img src="../assets/images/Logo-Tunotes.png" alt="TuNotes Icon">
+            </a>
+        </div>
+
+        <nav class="main-nav">
+            <ul class="nav-list">
+                <li class="nav-item">
+                    <a href="Dashboard.html" class="nav-link"><i data-lucide="folder-dot" class="ai-home-alt1"></i> Home</a>
+                </li>
+                <li class="nav-item active">
+                    <a href="MyNotes.html" class="nav-link"><i data-lucide="folder-dot" class="ai-file"></i> My Notes</a>
+                </li>
+                <li class="nav-item">
+                    <a href="MyFavorites.html" class="nav-link"><i data-lucide="folder-dot" class="ai-heart"></i> Favorit</a>
+                </li>
+                <li class="nav-item">
+                    <a href="UploadNotes.html" class="nav-link"><i data-lucide="folder-dot" class="ai-cloud-upload"></i> Upload Notes</a>
+                </li>
+                <li class="nav-item">
+                    <a href="NotesAI.html" class="nav-link"><i data-lucide="folder-dot" class="fi fi-rr-robot"></i> Notes AI</a>
+                </li>
+                <li class="nav-item">
+                    <a href="NotesRead.html" class="nav-link"><i data-lucide="folder-dot" class="ai-folder"></i> Notes Read</a>
+                </li>
+                <li class="nav-item">
+                    <a href="StudyList.html" class="nav-link"><i data-lucide="folder-dot" class="ai-schedule"></i> Study List</a>
+                </li>
+                <li class="nav-item">
+                    <a href="Profil.html" class="nav-link"><i data-lucide="folder-dot" class="ai-person"></i>Profil</a>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="sidebar__footer">
+             <a href="LandingPage.html" class="btn-logout"><i class="ai-sign-out"></i>
+                <span>Logout</span>
+            </a>
+        </div>
+    </aside>
+
+    <div class="main-content">
+        
+        <header class="content-header">
+            <div class="header__left">
+                <h1 class="page-title">My Notes</h1>
+                <p class="page-subtitle">Track and manage your document submissions</p>
+            </div>
+            <div class="header__right">
+                <button class="btn--icon">
+                    <i class="ai-bell"></i>
+                    <span class="badge" data-notif-badge>2</span>
+                </button>
+                <button class="btn--icon">
+                  <i class="ai-envelope"></i>
+                    <span class="badge" data-message-badge>3</span>
+                </button>
+                <button class="user-profile">
+                    <img src="../assets/images/user1.png" alt="" class="avatar" data-user-avatar>
+                    <span data-user-name></span>
+                    <i class="ai-chevron-down"></i>
+                </button>
+            </div>
+        </header>
+
+        <div class="action-bar">
+            <div class="filter-controls">
+                <div class="dropdown">
+                    <select class="select-box">
+                        <option>All Status</option>
+                    </select>
+                    <i class="ai-chevron-down-small  icon-dropdown"></i>
+                </div>
+                <div class="dropdown">
+                    <select class="select-box">
+                        <option>All Dates</option>
+                    </select>
+                    <i class="ai-chevron-down-small  icon-dropdown"></i>
+                </div>
+                <div class="search-box">
+                  <i class="ai-search icon-search"></i>
+                    <input type="text" placeholder="Search documents..." class="input-search">
+                </div>
+            </div>
+            <a href="UploadNotes.html"><button class="btn btn--primary"><i class="ai-plus"></i></i> Upload New</button></a>
+        </div>
+        
+        <div class="notes-scroll-wrapper">
+            <div class="notes-grid" id="notesGrid"></div>
+        </div>
+    </div>
+</div>
+<script src="../assets/js/api.js"></script>
+<script src="../assets/js/modal.js"></script>
+<script src="../assets/js/user-header.js"></script>
+<script src="../assets/js/my-notes.js"></script>
+</body>
+</html>
