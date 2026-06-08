@@ -125,7 +125,7 @@ async function analyzeWithAI() {
 }
 
 async function load() {
-  const { data } = await api.get('../api/study.php?view=reading_board');
+  const { data } = await api.get('../api/read-notes.php?view=reading_board');
   if (!data || !data.success) {
     await showAlertModal({ type: 'error', message: (data && data.message) || 'Gagal memuat reading board.' });
     return;
@@ -240,7 +240,7 @@ async function handleCardClick(e) {
       danger: true,
     });
     if (!ok) return;
-    const { data } = await api.delete('../api/study.php?action=delete_reading&id=' + del.dataset.readingId);
+    const { data } = await api.delete('../api/read-notes.php?action=delete_reading&id=' + del.dataset.readingId);
     if (data && data.success) await load();
     else await showAlertModal({ type: 'error', message: (data && data.message) || 'Gagal hapus.' });
   }
@@ -249,7 +249,7 @@ async function handleCardClick(e) {
 async function handleCardChange(e) {
   const sel = e.target.closest('[data-action="change-status"]');
   if (sel) {
-    const { data } = await api.post('../api/study.php?action=update_reading&id=' + sel.dataset.readingId, { status: sel.value });
+    const { data } = await api.post('../api/read-notes.php?action=update_reading&id=' + sel.dataset.readingId, { status: sel.value });
     if (data && data.success) await load();
     else await showAlertModal({ type: 'error', message: (data && data.message) || 'Gagal pindah kolom.' });
     return;
@@ -258,7 +258,7 @@ async function handleCardChange(e) {
   if (prog) {
     let v = parseInt(prog.value, 10);
     if (isNaN(v)) v = 0;
-    const { data } = await api.post('../api/study.php?action=update_reading&id=' + prog.dataset.readingId, { progress: v });
+    const { data } = await api.post('../api/read-notes.php?action=update_reading&id=' + prog.dataset.readingId, { progress: v });
     if (data && data.success) await load();
     else await showAlertModal({ type: 'error', message: (data && data.message) || 'Gagal update progress.' });
   }
@@ -294,7 +294,7 @@ async function addReadingFlow() {
     submitLabel: 'Tambahkan ke Board',
   });
   if (!data) return;
-  const { data: resp } = await api.post('../api/study.php?action=add_to_reading', {
+  const { data: resp } = await api.post('../api/read-notes.php?action=add_to_reading', {
     note_id: parseInt(data.note_id, 10),
     status: data.status,
   });

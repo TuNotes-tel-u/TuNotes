@@ -80,7 +80,7 @@ async function loadProgressBelajar() {
   if (!numEl || !fillEl || !msgEl) return;
 
   const target = parseInt(localStorage.getItem('weeklyTarget') || '20', 10) || 20;
-  const { data } = await api.get('../api/study.php?view=reading_board', { autoRedirect: false });
+  const { data } = await api.get('../api/read-notes.php?view=reading_board', { autoRedirect: false });
   const done = (data && data.success && data.meta && typeof data.meta.done_count === 'number')
                ? data.meta.done_count : 0;
 
